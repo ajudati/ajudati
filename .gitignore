@@ -35,3 +35,15 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# JavaScript (We need just .ts files)
+*.js
+
+# JavaScript Maps
+*.js.map
+
+# CSS (We need just .scss files)
+*.css
+
+# Downloaded TypeScript definitions (we need just typings.json config file)
+typings
