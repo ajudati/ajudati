@@ -1,4 +1,5 @@
 import * as koa from 'koa';
+import * as serve from 'koa-static';
 import * as mongoose from 'mongoose';
 var app:koa     = new koa();
 
@@ -9,9 +10,7 @@ var uristringTest:string = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL |
 mongoose.connect(uristringDev);
 var port:number = process.env.PORT || 8000;
 
-app.use(function *(){
-  this.body = 'Bem Vindo ao AjudaTI';
-});
+app.use(serve('.'));
 
 app.listen(port);
-console.log('AjudaTI executando');
+console.log(`AjudaTI executando na porta ${port}`);

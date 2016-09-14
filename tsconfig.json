@@ -9,6 +9,8 @@
         "moduleResolution": "node"
     },
     "files": [
-      "typings/index.d.ts"
+      "typings/index.d.ts",
+      "systemjs.config.ts",
+      "client/main.ts"
     ]
 }
