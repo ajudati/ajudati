@@ -1,0 +1,44 @@
+{
+  "name": "ajudati",
+  "version": "0.0.1",
+  "description": "Social Platform for IT Solutions",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "typings": "typings",
+    "gulp": "gulp",
+    "server:b": "tsc --p tsconfig.server.json",
+    "server:w": "tsc --p tsconfig.server.json -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajudati/ajudati.git"
+  },
+  "keywords": [
+    "HelpDesk",
+    "IT",
+    "Social",
+    "Platform",
+    "Technician"
+  ],
+  "author": "Anderson, Alex, Yara, Alberto, Fred, Letícia, USP e FGV",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajudati/ajudati/issues"
+  },
+  "homepage": "https://github.com/ajudati/ajudati#readme",
+  "dependencies": {
+    "koa": "^1.2.4",
+    "koa-body": "^1.5.0",
+    "koa-router": "^5.4.0",
+    "koa-send": "^3.2.0",
+    "koa-static": "^2.0.0",
+    "mongoose": "^4.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^2.2.0",
+    "lite-server": "^2.2.2",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.3"
+  }
+}

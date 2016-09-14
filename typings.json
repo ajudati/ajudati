@@ -1,0 +1,15 @@
+{
+  "name": "ajudati",
+  "dependencies": {},
+  "globalDependencies": {
+    "chai": "registry:dt/chai#3.4.0+20160601211834",
+    "cookies": "registry:dt/cookies#0.5.1+20160316171810",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "koa": "registry:dt/koa#2.0.0+20160724024233",
+    "koa-router": "registry:dt/koa-router#7.0.0+20160907102352",
+    "koa-static": "registry:dt/koa-static#2.0.0+20160807195632",
+    "mongodb": "registry:dt/mongodb#2.1.0+20160602142941",
+    "mongoose": "registry:dt/mongoose#4.5.9+20160826204928",
+    "node": "registry:dt/node#6.0.0+20160909174046"
+  }
+}
