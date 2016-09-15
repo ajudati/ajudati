@@ -1,8 +1,10 @@
 import * as koa          from 'koa';
 import * as serve        from 'koa-static';
 import * as Router       from 'koa-router';
+import * as jwt          from 'koa-jwt';
 import * as bodyparser   from 'koa-bodyparser';
 import * as mongoose     from 'mongoose';
+import * as fs           from 'fs';
 
 import { UserModel }     from './user/index';
 import { IUser }         from '../client/shared/index';
@@ -12,6 +14,8 @@ import { readFileThunk } from './file';
 var app:koa              = new koa();
 var router:Router        = new Router();
 var port:number          = process.env.PORT || 8000;
+var publicKey:string     = process.env.PUBLIC_KEY  || fs.readFileSync('id_rsa.pub');
+var privateKey:string    = process.env.PRIVATE_KEY || fs.readFileSync('id_rsa');
 
 /*-----------------------------------------
   DATABASE
@@ -44,10 +48,23 @@ router.get('/api/user/existing/:email', function *(){
 
 // Registering a user
 router.post('/api/user',function *(){
-    var user:IUser = this.request.body;
-    yield UserModel.register(user)
-      .then (user => {this.body = true;})
-      .catch(err  => {throw err;       });
+  var user:IUser = this.request.body;
+  yield UserModel.register(user)
+    .then (user => {this.body = true;})
+    .catch(err  => {throw err;       });
+});
+
+// Login
+router.post('/api/login', function*(){
+  var credentials = this.request.body;
+  yield UserModel.login(credentials.id, credentials.password).then(isMatch=>{
+    this.status = 200;
+    this.body = {};
+    if(isMatch){
+      var token   = jwt.sign({id:credentials.id}, privateKey, {algorithm: 'RS256'});
+      this.body.token = token;
+    }
+  });
 });
 
 /*-----------------------------------------

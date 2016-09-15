@@ -31,7 +31,6 @@ export class UserModel {
   }
 
   static register(user:IUser):Promise<UserType>{
-    console.log(user);
     return new Promise<UserType>((resolve,reject) => {
       bcrypt.genSalt(10, function(err:any, salt:string){
         if(err) reject(err);
@@ -45,6 +44,21 @@ export class UserModel {
           });
         });
       })
+    });
+  }
+
+  static login(email:string, password:string):Promise<boolean>{
+    return new Promise<boolean>((resolve, reject)=>{
+      _model.findOne({email:email},function(err, user){
+        if(err) reject(err);
+        if(user === null) resolve(false);
+        else{
+          bcrypt.compare(password,user.password,function(err, isMatch){
+            if(err) reject(err);
+            resolve(isMatch);
+          });
+        }
+      });
     });
   }
 }

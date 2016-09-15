@@ -14,7 +14,7 @@ declare var System: any;
       '@angular/router':                   'npm:@angular/router/bundles/router.umd.min.js',
       '@angular/forms':                    'npm:@angular/forms/bundles/forms.umd.min.js',
       'angular2-in-memory-web-api':        'npm:angular2-in-memory-web-api',
-      "rxjs":                              'npm:rxjs'
+      "rxjs":                              'npm:rxjs',
     },
     packages:{
       app:{
@@ -27,7 +27,7 @@ declare var System: any;
       'angular2-in-memory-web-api': {
         main: 'index.js', 
         defaultExtension: 'js' 
-      },
+      }
     }
   });
 })(this)

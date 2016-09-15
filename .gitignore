@@ -47,3 +47,7 @@ jspm_packages
 
 # Downloaded TypeScript definitions (we need just typings.json config file)
 typings
+
+# Private and public keys
+id_rsa
+id_rsa.pub

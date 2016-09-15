@@ -8,9 +8,28 @@
         "experimentalDecorators": true,
         "moduleResolution": "node"
     },
+    "filesGlob":["client/**/*.ts","client/*.ts"],
     "files": [
       "typings/index.d.ts",
       "systemjs.config.ts",
-      "client/main.ts"
+      "client/main.ts",
+      "client/app.module.ts",
+      "client/app.component.ts",
+      "client/app.routing.ts",
+      "client/login/index.ts",
+      "client/login/login.component.ts",
+      "client/register/index.ts",
+      "client/register/register.component.ts",
+      "client/dashboard/index.ts",
+      "client/dashboard/dashboard.component.ts",
+      "client/shared/index.ts",
+      "client/shared/auth.guard.ts",
+      "client/shared/user/index.ts",
+      "client/shared/user/user.ts",
+      "client/shared/user/iuser.ts",
+      "client/shared/user/user.service.ts",
+      "client/shared/email-existing-validator.directive.ts",
+      "client/shared/in-memory-data.service.ts",
+      "client/shared/equal-validator.directive.ts"
     ]
 }

@@ -9,18 +9,21 @@ import { InMemoryDataService }  from './shared/index';
 
 import { AppComponent           } from './app.component';
 import { RegisterComponent      } from './register/index';
+import { LoginComponent         } from './login/index';
+import { DashboardComponent     } from './dashboard/index';
 import { routing                } from './app.routing';
-import { UserService,
-         EqualValidator,
-         EmailExistingValidator } from './shared/index';
+import { UserService
+        ,EqualValidator
+        ,EmailExistingValidator 
+        ,AuthGuard              } from './shared/index';
 
 @NgModule({
   imports: [
     BrowserModule, FormsModule, HttpModule, routing, 
     //InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
-  declarations: [AppComponent, RegisterComponent, EmailExistingValidator, EqualValidator],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, DashboardComponent, EmailExistingValidator, EqualValidator],
   bootstrap: [AppComponent],
-  providers: [UserService]
+  providers: [UserService, AuthGuard]
 })
 export class AppModule { }
