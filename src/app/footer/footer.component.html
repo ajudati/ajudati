@@ -1,0 +1,13 @@
+<footer>
+  <md-toolbar color="primary">
+    <button md-button routerLink="/callform">Início</button>
+    <span class="spacer"></span>
+    <span *ngIf="!us.user?.auth">
+      <button md-button routerLink="/login">Login</button>
+      <button md-raised-button color="warn" routerLink="/register">Cadastrar</button>
+    </span>
+    <span *ngIf="us.user?.auth">
+      <button md-button (click)="logout()">Logout</button>
+    </span>
+  </md-toolbar>
+</footer>
