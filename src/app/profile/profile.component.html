@@ -1,0 +1,47 @@
+<div *ngIf="user" class="app-content">
+  <!-- Cabeçalho -->
+  <div class="profile-header">
+    <!-- Foto -->
+    <div class="profile-photo">
+      <img src="/img/nophoto.png">
+    </div>
+    <!-- Nome e descrição -->
+    <div class="profile-info">
+      <!-- Nome -->
+      <div class="profile-name">{{user.name}}</div>
+
+      <!-- Descrição -->
+      <div class="profile-description">PhD em alguma coisa</div>
+
+    </div>
+  </div>
+
+  <!-- Habilidades -->
+  <label class="profile-label">Habilidades</label>
+  <div></div>
+
+  <!-- Atendimentos -->
+  <div class="profile-calls-header">
+    <!-- Esquerda (nº atendimentos) -->
+    <div>
+      <label class="profile-label">Atendimentos</label>
+      <div class="profile-label">120</div>
+    </div>
+    <span class="md-toolbar-spacer"></span>
+    <!-- Direita (avaliação) -->
+    <div class="profile-calls-stars">
+      <div class="profile-label">Estrelas</div>
+      <div class="profile-label">4,56</div>
+    </div>
+  </div>
+
+  <!-- Lista de atendimentos -->
+  <md-card class="app-input-section">
+    <md-list>
+      <md-list-item *ngFor="let call of calls">
+        {{call.title}}
+      </md-list-item>
+    </md-list>
+  </md-card>
+  <div></div>
+</div>

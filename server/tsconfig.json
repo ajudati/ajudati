@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node"
+    },
+    "filesGlob":["server/**/*.ts"],
+    "files": [
+      "typings/index.d.ts",
+      "server/koa-jwt/index.d.ts",
+      "server/server.ts",
+      "server/file.ts",
+      "server/user/index.ts",
+      "server/user/user.model.ts"
+    ]
+}
