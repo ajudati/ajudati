@@ -1,0 +1,70 @@
+<div class="app-content">
+  <md-card class="app-input-section">
+    <md-card-title>Cadastro</md-card-title>
+    <form #f="ngForm" novalidate (ngSubmit)="onSubmit()">
+      <md-input
+        dividerColor="{{name.valid || name.pristine?'primary':'warn'}}" 
+        class="full-width"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Nome"
+        required
+        #name="ngModel"
+        [(ngModel)]="model.name">
+        <md-hint class="md-warn" [hidden]="name.valid || name.pristine">Nome não deve estar vazio</md-hint>
+      </md-input>
+      <md-input 
+        dividerColor="{{email.valid || email.pristine?'primary':'warn'}}" 
+        class="full-width" 
+        type="email" 
+        name="email" 
+        id="email" 
+        placeholder="Email" 
+        appValidateEmail
+        required 
+        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" 
+        #email="ngModel" 
+        [(ngModel)]="model.email">
+        <md-hint class="md-warn" [hidden]="email.valid || email.pristine">Email vazio, já cadastrado ou diferente do formato usuario@dominio.com</md-hint>
+      </md-input>
+      
+      <md-input
+        dividerColor="{{password.valid || password.pristine?'primary':'warn'}}" 
+        class="full-width"
+        type="password" 
+        name="password"
+        id="password"
+        placeholder="Senha"
+        required 
+        minlength="8"
+        maxlength="32"
+        appValidateEqual="password2" reverse="true"
+        #password="ngModel"
+        [(ngModel)]="model.password">
+        <md-hint class="md-warn" [hidden]="password.valid || password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
+      </md-input>
+
+      <md-input
+        dividerColor="{{password2.valid || password2.pristine?'primary':'warn'}}" 
+        class="full-width"
+        type="password" 
+        name="password2"
+        id="password2"
+        placeholder="Repetir a Senha"
+        required 
+        minlength="8"
+        maxlength="32"
+        appValidateEqual="password"
+        #password2="ngModel"
+        [(ngModel)]="model.password2">
+        <md-hint class="md-warn" [hidden]="password2.valid || password2.pristine">Senhas devem ser iguais e conter 8 a 32 caracteres</md-hint>
+      </md-input>
+      
+      <md-card-actions>
+        <button md-raised-button color="primary" [disabled]="!f.valid" >Cadastrar</button>
+        <button md-button>Limpar</button>
+      </md-card-actions>
+    </form>
+  </md-card>
+</div>
