@@ -1,0 +1,29 @@
+$github-color:black !default;
+$facebook-color:#3b5998 !default;
+$google-color:  #ff4343 !default;
+$twitter-color: #55acee !default;
+.app-social-buttons{
+  display:flex;
+  padding-bottom: 10px;
+}
+.app-social-buttons button{
+  flex-grow:1;
+  padding:0;
+  min-width: 0;
+}
+.btn-github{
+  background:$github-color;
+  color: white;
+}
+.btn-google{
+  background:$google-color;
+  color: white;
+}
+.btn-facebook{
+  background:$facebook-color;
+  color: white;
+}
+.btn-twitter{
+  background:$twitter-color;
+  color: white;
+}

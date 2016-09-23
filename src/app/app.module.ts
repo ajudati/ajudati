@@ -6,8 +6,11 @@ import { HttpModule } from '@angular/http';
 import { MdButtonModule } from '@angular2-material/button';
 import { MdInputModule } from '@angular2-material/input';
 import { MdCardModule } from '@angular2-material/card';
+import { MdIconModule } from '@angular2-material/icon';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 import { MdListModule } from '@angular2-material/list';
+
+import { AuthProviders, AuthMethods, AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +20,8 @@ import { routing } from './app.routing';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserService } from './user.service';
+import { ProfileService } from './profile.service';
+import { CallService } from './call.service';
 import { CallFormComponent } from './call-form/call-form.component';
 import { CallsListComponent } from './calls-list/calls-list.component';
 import { HelperSearchComponent } from './helper-search/helper-search.component';
@@ -26,9 +31,12 @@ import { CallsSearchComponent } from './calls-search/calls-search.component';
 import { ChipsComponent } from './chips/chips.component';
 import { EqualValidatorDirective } from './equal-validator.directive';
 import { EmailExistingValidatorDirective } from './email-existing-validator.directive';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { RootGuard } from './root.guard';
 
-import { AuthProviders, AuthMethods, AngularFireModule } from 'angularfire2';
 import * as firebase from 'firebase';
+import { SettingsComponent } from './settings/settings.component';
 
 const myFirebaseConfig = {
   apiKey: "AIzaSyBvrsSbR75AMNElZ59dYWCflnbVuI1pK4k",
@@ -58,7 +66,8 @@ const myFirebaseAuthConfig = {
     CallsSearchComponent,
     ChipsComponent,
     EqualValidatorDirective,
-    EmailExistingValidatorDirective
+    EmailExistingValidatorDirective,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,10 +80,11 @@ const myFirebaseAuthConfig = {
     MdCardModule,
     MdToolbarModule,
     MdListModule,
+    MdIconModule,
 
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)
   ],
-  providers: [UserService],
+  providers: [UserService, ProfileService, CallService, AuthService, AuthGuard, RootGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

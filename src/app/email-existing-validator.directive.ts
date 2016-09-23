@@ -15,7 +15,6 @@ export class EmailExistingValidatorDirective implements Validator {
 
   validate(c: AbstractControl): Promise<{[key: string]: any}>{
     return this.us.isEmailRegistered(c.value).then(value => {
-      console.log(value);
       if(value){
         return {appValidateEmail:true};
       }else{
