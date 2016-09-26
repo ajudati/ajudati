@@ -3,31 +3,35 @@
   <div class="profile-header">
     <!-- Foto -->
     <div class="profile-photo">
-      <img src="/img/nophoto.png">
+      <img src="{{profile.photo}}">
     </div>
     <!-- Nome e descrição -->
     <div class="profile-info">
       <!-- Nome -->
-      <div class="profile-name">{{user.name}}</div>
+      <div class="profile-name">{{ (currentUser | async)?.name}}</div>
 
       <!-- Descrição -->
-      <div class="profile-description">PhD em alguma coisa</div>
+      <div class="profile-description">{{ (currentProfile | async)?.description}}</div>
 
     </div>
   </div>
 
   <!-- Habilidades -->
   <label class="profile-label">Habilidades</label>
-  <div></div>
+  <div>
+    <ul class="profile-skills">
+      <li *ngFor="let skill of (currentProfile | async)?.skills">{{skill}}</li>
+    </ul>
+  </div>
 
   <!-- Atendimentos -->
   <div class="profile-calls-header">
     <!-- Esquerda (nº atendimentos) -->
-    <div>
+    <div class="profile-calls-info">
       <label class="profile-label">Atendimentos</label>
       <div class="profile-label">120</div>
     </div>
-    <span class="md-toolbar-spacer"></span>
+    <span class="spacer"></span>
     <!-- Direita (avaliação) -->
     <div class="profile-calls-stars">
       <div class="profile-label">Estrelas</div>
@@ -37,9 +41,20 @@
 
   <!-- Lista de atendimentos -->
   <md-card class="app-input-section">
-    <md-list>
-      <md-list-item *ngFor="let call of calls">
-        {{call.title}}
+    <md-list class="md-dense" flex>
+      <md-list-item class="md-3-line" *ngFor="let call of currentCalls | async">
+        <div class="md-list-item-text" layout="column">
+          <h4>{{call.title}}</h4>
+          <p>{{call.description}}</p>
+          <div class="calls-info">
+            <div class="calls-person"></div>
+            <span class="spacer"></span>
+            <div class="calls-actions">
+              <button md-icon-button><i class="material-icons">check</i></button>
+              <button md-icon-button><i class="material-icons">delete_forever</i></button>
+            </div>  
+          </div>
+        </div>
       </md-list-item>
     </md-list>
   </md-card>
