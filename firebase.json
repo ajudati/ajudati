@@ -6,6 +6,10 @@
     "public": "dist",
     "rewrites": [
       {
+        "source":"google0f4e62df65163795.html",
+        "destination":"/google0f4e62df65163795.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
