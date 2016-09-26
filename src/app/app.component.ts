@@ -15,7 +15,7 @@ export class AppComponent {
     'login':    'Entrar',
     'register': 'Cadastrar',
     'profile':  'Perfil',
-    'callform':  'Chamados',
+    'callform':  'Adicionar Chamado',
     'callslist':  'Chamados',
     'settings':  'Configurações'
   };
