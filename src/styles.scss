@@ -18,7 +18,7 @@ body, app-root{
 app-header{
   order:1;
   flex-shrink:0;
-  flex-basis: 50px;
+  // flex-basis: 50px;
 }
 main{
   order: 2;
@@ -28,7 +28,7 @@ main{
 app-footer{
   order:3;
   flex-shrink:0;
-  flex-basis:50px;
+  // flex-basis:50px;
 }
 .full-width{
   width:100%;
@@ -92,4 +92,11 @@ p{
   display: flex;
   align-items:center;
   justify-content:center;
+}
+
+body md-toolbar{
+  min-height: 54px;
+  md-toolbar-row{
+    height: 54px;
+  }
 }

@@ -1,0 +1,37 @@
+<div class="app-content">
+    <form #f="ngForm" novalidate (ngSubmit)="onSubmit()">
+      <md-input
+        dividerColor="{{name.valid || name.pristine?'primary':'warn'}}" 
+        class="full-width"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Nome"
+        required
+        #name="ngModel"
+        [(ngModel)]="model.name">
+        <md-hint class="md-warn" [hidden]="name.valid || name.pristine">Nome não deve estar vazio</md-hint>
+      </md-input>
+      <md-input 
+        dividerColor="{{description.valid || description.pristine?'primary':'warn'}}" 
+        class="full-width" 
+        type="text" 
+        name="description" 
+        id="description" 
+        placeholder="Descrição" 
+        required 
+        #description="ngModel"
+        [(ngModel)]="model.description">
+        
+        <md-hint class="md-warn" [hidden]="description.valid || description.pristine">Descrição não pode estar vazio. Escreva algo sobre você.</md-hint>
+      </md-input>
+
+      
+      <app-chips placeholder="Habilidades (separe por vírgulas)" id="skills" name="skills" class="full-width" #skills="ngModel" [(ngModel)]="model.skills"></app-chips>
+      
+      <md-card-actions>
+        <button md-raised-button type="submit" color="primary" [disabled]="!f.valid" >Salvar</button>
+        <button md-button type="button" (click)="onCancel()">Cancelar</button>
+      </md-card-actions>
+    </form>
+</div>

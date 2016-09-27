@@ -68,4 +68,8 @@ export class UserService {
   getUser(uid: string):FirebaseObjectObservable<any>{
     return this.af.database.object(`users/${uid}`);
   }
+
+  async updateUser(uid: string, changes: any):Promise<void>{
+    return await this.af.database.object(`users/${uid}`).update(changes);
+  }
 }

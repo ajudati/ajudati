@@ -1,3 +1,38 @@
 <div class="app-content">
-<button md-raised-button color="primary" routerLink='/callform'><i class="material-icons">add</i>Novo Chamado</button>
+  <button md-raised-button color="primary" routerLink='/callform'><i class="material-icons">add</i>Novo Chamado</button>
+  <!-- Atendimentos -->
+  <div class="profile-calls-header">
+    <!-- Esquerda (nº atendimentos) -->
+    <div class="profile-calls-info">
+      <label class="profile-label">Atendimentos</label>
+      <div class="profile-label">120</div>
+    </div>
+    <span class="spacer"></span>
+    <!-- Direita (avaliação) -->
+    <div class="profile-calls-stars">
+      <div class="profile-label">Estrelas</div>
+      <div class="profile-label">4,56</div>
+    </div>
+  </div>
+
+  <!-- Lista de atendimentos -->
+  <md-card class="app-input-section">
+    <md-list class="md-dense" flex>
+      <md-list-item class="md-3-line" *ngFor="let call of currentCalls | async">
+        <div class="md-list-item-text" layout="column">
+          <h4>{{call.title}}</h4>
+          <p>{{call.description}}</p>
+          <div class="calls-info">
+            <div class="calls-person"></div>
+            <span class="spacer"></span>
+            <div class="calls-actions">
+              <button md-icon-button><i class="material-icons">check</i></button>
+              <button md-icon-button><i class="material-icons">delete_forever</i></button>
+            </div>  
+          </div>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card>
 </div>
+
