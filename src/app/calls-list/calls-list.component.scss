@@ -1,0 +1,43 @@
+.profile-calls-header{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+.profile-calls-stars{
+  text-align:right;
+}
+.profile-calls-info, .profile-calls-stars{
+  display: flex;
+  flex-direction: column;
+}
+md-card{
+  padding:0px;
+  margin:0px;
+}
+md-list{
+  cursor:pointer;
+  padding:0px;
+  md-list-item /deep/ .md-list-item{
+    padding: 5px;
+    height:auto;
+    &:hover{
+      background:#f1f1f1;
+    }
+    .md-list-item-text{
+      width: 100%;
+      .calls-info{
+        display: flex;
+        width: 100%;
+        .calls-person{
+          
+        }
+        .calls-actions{
+        }
+
+      }
+      
+
+    }
+  }
+
+}

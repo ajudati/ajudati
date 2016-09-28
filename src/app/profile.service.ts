@@ -30,7 +30,7 @@ export class ProfileService {
    *
    * @return     { description_of_the_return_value }
    */
-  async updateProfile(profile:IProfile, changes:any){
+  async updateProfile(profile:IProfile, changes:any):Promise<void>{
     await this.af.database.object(`profiles/${profile.$key}`).update(changes);
   }
 

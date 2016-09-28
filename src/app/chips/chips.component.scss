@@ -1,0 +1,54 @@
+$radius: 18px;
+$height: 36px;
+
+.chips{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.38);
+  margin-bottom: 16px;
+  label{
+    font-size:12px;
+    color: rgba(0, 0, 0, 0.38);
+  }
+  .chips-control{
+    .tags{
+      padding:0px;
+      display: inline;
+      li{
+        display      : inline-block;
+        vertical-align: middle;
+        margin       : 2px;
+        background   : #dddddd;
+        border-radius: $radius;
+        .tag-text{
+          height : $height;
+          display: inline;
+          // display: flex;
+          // flex-direction:row;
+          // align-items:center;
+          padding-left: 5px;
+          vertical-align: middle;
+        }
+        .btn{
+          height: $height;
+          border-radius: 0 $radius $radius 0;
+          border:none;
+          vertical-align: middle;
+        }
+        .btn-tag{
+          background: none;
+          //display: flex;
+          &:hover{
+            background: #aaaaaa;
+          }
+        }
+      }
+    }
+    #inputid{
+      background: none;
+      border:none;
+      font-size:16px;
+      font-family: inherit;
+      height: $height;
+      vertical-align: middle;
+    }
+  }
+}

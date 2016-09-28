@@ -1,3 +1,19 @@
-<p>
-  chips works!
-</p>
+<div class="chips">
+  <label for="inputid">{{placeholder}}</label>
+  <div class="chips-control" (click)="onClick()">
+    <ul class="tags">
+      <li *ngFor="let tag of tags">
+        <span class="tag-text">{{tag}}</span>
+        <button class="btn btn-tag" (click)="closeTag(tag)">
+          <i class="material-icons">close</i>
+        </button>
+      </li>
+    </ul>
+    <input [focus]="inputFocused" (blur)="onInputBlur()" id="inputid" type="text" 
+           #currentTag="ngModel" [(ngModel)]="model.currentTag" 
+           (keypress)="onKeyPress($event.key, currentTag.value.length)"
+           (keyup)="onKeyUp(currentTag.value.length)"
+           [ngStyle]="{'width' : width + 'px'}" width="12px">
+  </div>
+  
+</div>
