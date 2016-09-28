@@ -4,35 +4,55 @@
   <div class="profile-calls-header">
     <!-- Esquerda (nº atendimentos) -->
     <div class="profile-calls-info">
-      <label class="profile-label">Atendimentos</label>
-      <div class="profile-label">120</div>
     </div>
     <span class="spacer"></span>
     <!-- Direita (avaliação) -->
     <div class="profile-calls-stars">
-      <div class="profile-label">Estrelas</div>
-      <div class="profile-label">4,56</div>
     </div>
   </div>
-
+  <div class="view-finished">
+    <md-slide-toggle [(ngModel)]="viewFinished"></md-slide-toggle>
+    <label>Visualizar Completados</label>
+  </div>
   <!-- Lista de atendimentos -->
   <md-card class="app-input-section">
     <md-list class="md-dense" flex>
-      <md-list-item class="md-3-line" *ngFor="let call of currentCalls | async">
-        <div class="md-list-item-text" layout="column">
-          <h4>{{call.title}}</h4>
-          <p>{{call.description}}</p>
-          <div class="calls-info">
-            <div class="calls-person"></div>
-            <span class="spacer"></span>
-            <div class="calls-actions">
-              <button md-icon-button><i class="material-icons">check</i></button>
-              <button md-icon-button><i class="material-icons">delete_forever</i></button>
-            </div>  
+      <template ngFor let-call [ngForOf]="currentCalls|async" let-i="index">
+        <md-list-item *ngIf="viewFinished || !call.finished" (click)="onCallSelected(call)" class="md-3-line">
+          <div class="md-list-item-text" layout="column">
+            <div class="call-header">
+              <h4>{{call.title}}</h4>
+              <span class="spacer"></span>
+              <div class="call-date"><p>{{call.createdOn | date:"dd/MM/yy hh:mm"}}<p></div>
+            </div>
+            <p>{{call.description}}</p>
+            <div class="call-info">
+              <div class="call-person">
+                <div *ngIf="call.helper">
+                  <p>{{(users[call.helper]|async)?.name}}</p>
+                </div>
+              </div>
+              <span class="spacer"></span>
+              <div class="call-actions">
+                <div *ngIf="!call.finished">
+                  <button *ngIf="call.helper" md-icon-button (click)="onCheck(call.$key)"><i class="material-icons">check</i></button>
+                  <button md-icon-button (click)="onRemove(call.$key)"><i class="material-icons">delete_forever</i></button>
+                </div>
+              </div>  
+            </div>
           </div>
-        </div>
-      </md-list-item>
+        </md-list-item>
+        <md-divider></md-divider>
+      </template>
     </md-list>
   </md-card>
+
+  <ul>
+    <li *ngFor="let service of currentServices|async">
+      <div>{{service.title}}</div>
+      <div>{{service.description}}</div>
+      <div>Criado por: {{(users[service.owner]|async)?.name}}</div>
+    </li>
+  </ul>
 </div>
 

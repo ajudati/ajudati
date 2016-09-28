@@ -17,7 +17,8 @@ export class AppComponent {
     'profile':  'Perfil',
     'callform':  'Adicionar Chamado',
     'callslist':  'Chamados',
-    'settings':  'Configurações'
+    'settings':  'Configurações',
+    'call':  'Chamado'
   };
   hasBack: boolean = false;
 

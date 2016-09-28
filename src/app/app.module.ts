@@ -9,6 +9,8 @@ import { MdCardModule } from '@angular2-material/card';
 import { MdIconModule } from '@angular2-material/icon';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 import { MdListModule } from '@angular2-material/list';
+import { MdCheckboxModule } from '@angular2-material/checkbox';
+import { MdSlideToggleModule } from '@angular2-material/slide-toggle';
 
 import * as firebase from 'firebase';
 import { AuthProviders, AuthMethods, AngularFireModule } from 'angularfire2';
@@ -38,6 +40,7 @@ import { EmailExistingValidatorDirective } from './email-existing-validator.dire
 import { FocusDirective } from './focus.directive';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
+import { CallComponent } from './call/call.component';
 
 
 const myFirebaseConfig = {
@@ -71,7 +74,8 @@ const myFirebaseAuthConfig = {
     EmailExistingValidatorDirective,
     FocusDirective,
     SettingsComponent,
-    ProfileFormComponent
+    ProfileFormComponent,
+    CallComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +89,8 @@ const myFirebaseAuthConfig = {
     MdToolbarModule,
     MdListModule,
     MdIconModule,
+    MdCheckboxModule,
+    MdSlideToggleModule,
 
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)
   ],

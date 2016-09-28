@@ -1,3 +1,7 @@
+label{
+  font-size: 12px;
+  color:rgba(0, 0, 0, 0.38);
+}
 .profile-calls-header{
   display:flex;
   justify-content: center;
@@ -14,6 +18,10 @@ md-card{
   padding:0px;
   margin:0px;
 }
+.view-finished{
+  display: flex;
+  align-items:center;
+}
 md-list{
   cursor:pointer;
   padding:0px;
@@ -25,13 +33,21 @@ md-list{
     }
     .md-list-item-text{
       width: 100%;
-      .calls-info{
+      .call-header{
+        display: flex;
+        .call-date{
+          text-align: right;
+        }
+      }
+      .call-info{
         display: flex;
         width: 100%;
-        .calls-person{
-          
+        .call-person{
+          display: flex;
+          align-items: center;
         }
-        .calls-actions{
+        .call-actions{
+          height:40px;
         }
 
       }

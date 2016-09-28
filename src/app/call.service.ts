@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
-import { Call } from './call';
+import { Call, ICall } from './call';
 
 @Injectable()
 export class CallService {
 
   currentCall:Call;
+  calls:FirebaseListObservable<ICall[]>;
 
   constructor(private af:AngularFire) {
     this.currentCall = null;
+    this.calls = this.af.database.list(`calls`);
   }
 
   createCall(call:Call): firebase.Promise<any>{
-    return this.af.database.list(`calls`).push(call);
+    console.log(call);
+    return this.calls.push(call);
+  }
+
+  removeCall(id:string){
+    this.calls.remove(id);
+  }
+
+  finishCall(id:string){
+    this.calls.update(id,{finished:true, finishedOn:firebase.database['ServerValue']['TIMESTAMP'], viewed: true});
   }
 
 
@@ -21,6 +32,14 @@ export class CallService {
     return this.af.database.list('calls',{
       query:{
         orderByChild: 'owner',
+        equalTo: uid
+      }
+    });
+  }
+  getServices(uid:string):FirebaseListObservable<any>{
+    return this.af.database.list('calls',{
+      query:{
+        orderByChild: 'helper',
         equalTo: uid
       }
     });

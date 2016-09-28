@@ -22,6 +22,7 @@ export class ChipsComponent implements OnInit, ControlValueAccessor {
   tags: string[];
   width:number;
   model = {currentTag:""};
+
   @Input() placeholder:string = '';
 
   constructor(){
