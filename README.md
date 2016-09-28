@@ -17,24 +17,24 @@ Abra um navegador na página `http://localhost:4200` e voilà.
 
 # Funcionalidades
 
-| Funcionalidade                 | Status | User Story |
-|--------------------------------|--------|------------|
-| Cadastro do Usuário            | Feito  |            |
-| Login                          | Feito  |            |
-| Informar Problema (chamado)    | Feito  |            |
-| Procurar ajudante              |        |            |
-| Perfil de usuário (e ajudante) |        |            |
-| Editar perfil                  |        |            |
-| Associar ajudante ao chamado   |        |            |
-| Aceitar chamado do usuário     |        |            |
-| Listar chamados                |        |            |
-| Editar Problema                |        |            |
-| Chat texto                     |        |            |
-| Chat imagens                   |        |            |
-| Chat áudio                     |        |            |
-| Chat câmera                    |        |            |
-| Avaliação                      |        |            |
-| Pagamento                      |        |            |
+| Funcionalidade                 | Status |
+|--------------------------------|--------|
+| Cadastro do Usuário            | Feito  |
+| Login                          | Feito  |
+| Informar Problema (chamado)    | Feito  |
+| Procurar ajudante              |        |
+| Perfil de usuário (e ajudante) | Feito  |
+| Editar perfil                  | Feito  |
+| Associar ajudante ao chamado   |        |
+| Aceitar chamado do usuário     |        |
+| Listar chamados                |        |
+| Editar Problema                |        |
+| Chat texto                     |        |
+| Chat imagens                   |        |
+| Chat áudio                     |        |
+| Chat câmera                    |        |
+| Avaliação                      |        |
+| Pagamento                      |        |
 
 
 # Versão Demo

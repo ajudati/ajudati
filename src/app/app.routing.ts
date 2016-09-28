@@ -6,6 +6,7 @@ import { ProfileComponent }   from './profile/profile.component';
 import { CallFormComponent }   from './call-form/call-form.component';
 import { HelperSearchComponent }   from './helper-search/helper-search.component';
 import { CallsListComponent } from './calls-list/calls-list.component';
+import { CallComponent }      from './call/call.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
@@ -52,7 +53,13 @@ const appRoutes: Routes = [
     path: 'settings',
     component: SettingsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'call/:id',
+    component: CallComponent,
+    canActivate: [AuthGuard]
   }
+
 
 
 ];
