@@ -1,3 +1,37 @@
+$primary: #009688;
+/deep/ md-tab-group {
+  .md-tab-header{
+    justify-content: center;
+    background: $primary;
+    color: white;
+    .md-tab-label{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.md-tab-active{
+        background: rgba(178, 223, 219, 0.3);
+        opacity: 1;
+      }
+    }
+    md-ink-bar{
+      background: white;
+    }
+  }
+}
+
+.calls-controls{
+  display:flex;
+  margin-bottom: 5px;
+  .view-finished{
+    display: flex;
+    align-items:center;
+    flex-direction: row;
+    md-slide-toggle{
+      margin: 0;
+    }
+  }
+}
+
 label{
   font-size: 12px;
   color:rgba(0, 0, 0, 0.38);
@@ -18,42 +52,52 @@ md-card{
   padding:0px;
   margin:0px;
 }
-.view-finished{
-  display: flex;
-  align-items:center;
-}
+
 md-list{
   cursor:pointer;
   padding:0px;
-  md-list-item /deep/ .md-list-item{
-    padding: 5px;
-    height:auto;
-    &:hover{
-      background:#f1f1f1;
+  md-list-item {
+    &.call-finished /deep/ .md-list-item{
+      //border-left: 3px solid $primary;
+      // color: white;
+      h4{
+        color:$primary;
+      }
     }
-    .md-list-item-text{
-      width: 100%;
-      .call-header{
-        display: flex;
-        .call-date{
-          text-align: right;
-        }
+    /deep/ .md-list-item{
+      padding: 5px;
+      height:auto;
+      &:hover{
+        background:#f1f1f1;
       }
-      .call-info{
-        display: flex;
+      .md-list-item-text{
         width: 100%;
-        .call-person{
+        .call-header{
           display: flex;
-          align-items: center;
+          .call-date{
+            text-align: right;
+          }
+          .material-icons.call-finished{
+            color: $primary;
+          }
         }
-        .call-actions{
-          height:40px;
+        .call-info{
+          display: flex;
+          width: 100%;
+          .call-person{
+            display: flex;
+            align-items: center;
+          }
+          .call-actions{
+            height:40px;
+          }
         }
-
       }
-      
-
     }
   }
 
+}
+
+.service-waiting{
+  color: orange;
 }

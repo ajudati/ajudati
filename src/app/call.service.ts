@@ -26,6 +26,12 @@ export class CallService {
   finishCall(id:string){
     this.calls.update(id,{finished:true, finishedOn:firebase.database['ServerValue']['TIMESTAMP'], viewed: true});
   }
+  acceptCall(id:string){
+    this.calls.update(id,{accepted:true, acceptedOn: firebase.database['ServerValue']['TIMESTAMP'], viewer: true});
+  }
+  rejectCall(id:string){
+    this.calls.update(id,{accepted:false, helper:null, acceptedOn: firebase.database['ServerValue']['TIMESTAMP'], viewer: false});
+  }
 
 
   getCalls(uid:string):FirebaseListObservable<any>{
