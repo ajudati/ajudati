@@ -26,34 +26,38 @@
         <md-card class="app-input-section">
           <md-list class="md-dense" flex>
             <template ngFor let-call [ngForOf]="currentCalls|async" let-i="index">
-              <md-list-item [ngClass]="{'call-finished': call.finished}" *ngIf="viewFinished || !call.finished" (click)="onCallSelected(call)" class="md-3-line">
+              <md-list-item [ngClass]="{'call-finished': call.status==5}" *ngIf="viewFinished || call.status!=5" (click)="onCallSelected(call)" class="md-3-line">
                 <div class="md-list-item-text" layout="column">
                   <div class="call-header">
                     <h4>{{call.title}}</h4>
-                    <div *ngIf="call.finished">
+                    <div *ngIf="call.status==5">
                       <i class="material-icons call-finished">check_circle</i>
                     </div>
                     <span class="spacer"></span>
-                    <div class="call-date"><p>{{call.createdOn | date:"dd/MM/yy hh:mm"}}<p></div>
+                    <div class="call-date"><p>{{call.createdAt | date:"dd/MM/yy hh:mm"}}<p></div>
                   </div>
                   <p>{{call.description}}</p>
                   <div class="call-info">
-                    <div class="call-person">
-                      <div *ngIf="call.helper">
-                        <p>{{(users[call.helper]|async)?.name}}</p>
-                      </div>
+                    <div class="call-person" *ngIf="call.helper" [ngClass]="{'call-waiting':call.status==2}">
+                        <p>{{(users[call.helper]|async)?.name}} <span *ngIf="call.status==2 && !call.ownerAccepted"> quer ajudar</span></p>
+                        <i *ngIf="call.status==2 && !call.helperAccepted" class="material-icons service-waiting">schedule</i>
+                        
+                        <span *ngIf="!call.ownerAccepted && call.status==2" [ngClass]="{'call-waiting':call.status==2}">
+                          <button md-icon-button (click)="onAcceptHelperClicked(call)"><i class="material-icons" >thumb_up</i></button>
+                          <button md-icon-button (click)="onRejectHelperClicked(call)"><i class="material-icons">thumb_down</i></button>
+                        </span>
                     </div>
                     <span class="spacer"></span>
                     <div class="call-actions">
-                      <div *ngIf="!call.finished">
-                        <button *ngIf="call.helper" md-icon-button (click)="onCheck(call.$key)"><i class="material-icons">check</i></button>
+                      <div *ngIf="call.status!=5">
+                        <button *ngIf="call.status==3" md-icon-button (click)="onCheck(call.$key)"><i class="material-icons">check</i></button>
                         <button md-icon-button (click)="onRemove(call.$key)"><i class="material-icons">delete_forever</i></button>
                       </div>
                     </div>  
                   </div>
                 </div>
               </md-list-item>
-              <md-divider *ngIf="viewFinished || !call.finished"></md-divider>
+              <md-divider *ngIf="viewFinished || call.status!=5"></md-divider>
             </template>
           </md-list>
         </md-card>
@@ -65,7 +69,7 @@
     <template md-tab-content>
       <div class="app-content">
         <div class="calls-controls">
-          <button md-icon-button color="primary" routerLink='/callform'><i class="material-icons">add</i></button>
+          <button md-icon-button color="primary" (click)="onAddServiceClicked()"><i class="material-icons">add</i></button>
           <span class="spacer"></span>
           <div class="view-finished">
             <label>Exibir finalizados</label>
@@ -75,14 +79,14 @@
         <md-card class="app-input-section">
           <md-list class="md-dense" flex>
             <template ngFor let-service [ngForOf]="currentServices|async" let-i="index">
-              <md-list-item [ngClass]="{'call-finished': service.finished}" *ngIf="viewFinished || !service.finished" (click)="onCallSelected(service)" class="md-3-line">
+              <md-list-item [ngClass]="{'call-finished': service.status==5}" *ngIf="viewFinished || service.status!=5" (click)="onCallSelected(service)" class="md-3-line">
                 <div class="md-list-item-text" layout="column">
                   <div class="call-header">
-                    <h4>{{service.title}}</h4>
-                    <div *ngIf="!service.accepted">
+                    <h4 [ngClass]="{'call-waiting':!service.helperAccepted && service.status==2}">{{service.title}}</h4>
+                    <div *ngIf="!service.helperAccepted && service.status==2">
                       <i class="material-icons service-waiting">schedule</i>
                     </div>
-                    <div *ngIf="service.finished">
+                    <div *ngIf="service.status==5">
                       <i class="material-icons call-finished">check_circle</i>
                     </div>
                     
@@ -96,8 +100,8 @@
                     </div>
                     <span class="spacer"></span>
                     <div class="call-actions">
-                      <button md-icon-button *ngIf="!service.accepted" (click)="onServiceAccepted(service)"><i class="material-icons">check</i></button>
-                      <button md-icon-button *ngIf="!service.accepted" (click)="onServiceRejected(service)"><i class="material-icons">close</i></button>
+                      <button md-icon-button *ngIf="!service.helperAccepted && service.status==2" (click)="onServiceAccepted(service)"><i class="material-icons">thumb_up</i></button>
+                      <button md-icon-button *ngIf="!service.helperAccepted && service.status==2" (click)="onServiceRejected(service)"><i class="material-icons">thumb_down</i></button>
                     </div>
                   </div>
                 </div>

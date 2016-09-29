@@ -4,6 +4,7 @@ import { RegisterComponent }  from './register/register.component';
 import { LoginComponent }     from './login/login.component';
 import { ProfileComponent }   from './profile/profile.component';
 import { CallFormComponent }   from './call-form/call-form.component';
+import { CallSearchComponent }   from './call-search/call-search.component';
 import { HelperSearchComponent }   from './helper-search/helper-search.component';
 import { CallsListComponent } from './calls-list/calls-list.component';
 import { CallComponent }      from './call/call.component';
@@ -57,6 +58,11 @@ const appRoutes: Routes = [
   {
     path: 'call/:id',
     component: CallComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'callsearch',
+    component: CallSearchComponent,
     canActivate: [AuthGuard]
   }
 

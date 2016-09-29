@@ -1,0 +1,50 @@
+$primary: #009688;
+.call-section{
+  margin: 16px 0;
+}
+.call-title{
+  margin:0px;
+  font-size: 20px;
+  display:flex;
+  align-items:center;
+  word-wrap:break-word;
+  white-space: normal;
+}
+.call-info{
+  display: flex;
+  margin-bottom: 16px;
+}
+.call-controls{
+  text-align: right;
+}
+.call-helper{
+  display: flex;
+  align-items:center;
+}
+.call-helper-search{
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+.call-finished{
+  color:$primary;
+}
+.call-waiting, .call-waiting p{
+  color:darkorange;
+}
+.call-helper-info{
+  display: flex;
+  align-items:center;
+}
+.subtitle{
+  background: $primary;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  color: white;
+  padding: 0 24px;
+  text-align: center;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}

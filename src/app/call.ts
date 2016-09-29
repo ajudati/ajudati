@@ -1,34 +1,49 @@
+import { CallStatus } from './call-status.enum';
 export interface ICall {
-  $key?:string;
-  title: string;
-  description: string;
-  owner: string;
-  helper: string;
-  finished: boolean;
-  finishedOn: number;
-  createdOn: number;
-  viewed: boolean;
-  accepted: boolean;
+  $key?:            string;
+  title:            string;
+  description:      string;
+  owner:            string;
+  helper:           string;
+  status:           CallStatus;
+  finishedAt:       number;
+  createdAt:        number;
+  viewed:           boolean;
+  ownerAccepted:    boolean;
+  ownerAcceptedAt:  number;
+  helperAccepted:   boolean;
+  helperAcceptedAt: number;
+  images:           string[];
 }
 
 export class Call implements ICall{
-  title: string;
-  description: string;
-  owner: string;
-  helper: string;
-  finished: boolean;
-  finishedOn: number;
-  createdOn: number;
-  viewed: boolean;
-  accepted: boolean;
+  title:            string;
+  description:      string;
+  owner:            string;
+  helper:           string;
+  status:           CallStatus;
+  finishedAt:       number;
+  createdAt:        number;
+  viewed:           boolean;
+  ownerAccepted:    boolean;
+  ownerAcceptedAt:  number;
+  helperAccepted:   boolean;
+  helperAcceptedAt: number;
+  images:           string[];
   constructor(title:string = '', description:string = '', owner:string = ''){
-    this.title       = title;
-    this.description = description;
-    this.owner       = owner;
-    this.finished    = false;
-    this.finishedOn  = firebase.database['ServerValue']['TIMESTAMP'];
-    this.createdOn   = firebase.database['ServerValue']['TIMESTAMP'];
-    this.viewed      = false;
-    this.accepted    = false;
+    let time:number = firebase.database['ServerValue']['TIMESTAMP'];
+    this.title            = title;
+    this.description      = description;
+    this.owner            = owner;
+    this.helper           = null;
+    this.status           = CallStatus.New;
+    this.finishedAt       = time;
+    this.createdAt        = time;
+    this.viewed           = false;
+    this.ownerAccepted    = false;
+    this.helperAccepted   = false;
+    this.helperAcceptedAt = time;
+    this.ownerAcceptedAt  = time;
+    this.images           = [];
   }
 }
