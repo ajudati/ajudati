@@ -8,6 +8,7 @@ export interface ICall {
   finishedOn: number;
   createdOn: number;
   viewed: boolean;
+  accepted: boolean;
 }
 
 export class Call implements ICall{
@@ -19,6 +20,7 @@ export class Call implements ICall{
   finishedOn: number;
   createdOn: number;
   viewed: boolean;
+  accepted: boolean;
   constructor(title:string = '', description:string = '', owner:string = ''){
     this.title       = title;
     this.description = description;
@@ -27,5 +29,6 @@ export class Call implements ICall{
     this.finishedOn  = firebase.database['ServerValue']['TIMESTAMP'];
     this.createdOn   = firebase.database['ServerValue']['TIMESTAMP'];
     this.viewed      = false;
+    this.accepted    = false;
   }
 }

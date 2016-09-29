@@ -11,6 +11,7 @@ import { MdToolbarModule } from '@angular2-material/toolbar';
 import { MdListModule } from '@angular2-material/list';
 import { MdCheckboxModule } from '@angular2-material/checkbox';
 import { MdSlideToggleModule } from '@angular2-material/slide-toggle';
+import { MdTabsModule } from '@angular2-material/tabs';
 
 import * as firebase from 'firebase';
 import { AuthProviders, AuthMethods, AngularFireModule } from 'angularfire2';
@@ -91,6 +92,7 @@ const myFirebaseAuthConfig = {
     MdIconModule,
     MdCheckboxModule,
     MdSlideToggleModule,
+    MdTabsModule,
 
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)
   ],
