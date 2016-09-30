@@ -65,4 +65,14 @@ export class CallsListComponent implements OnInit {
   onServiceRejected(service:ICall){
     this.cs.rejectCall(service.$key);
   }
+  onAddServiceClicked(){
+    this.route.navigate(['callsearch']);
+  }
+  onRejectHelperClicked(service:ICall){
+    this.cs.rejectHelper(service.$key);
+  }
+  onAcceptHelperClicked(service:ICall){
+    console.log("accept");
+    this.cs.acceptHelper(service.$key);
+  }
 }

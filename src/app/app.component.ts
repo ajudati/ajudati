@@ -18,7 +18,8 @@ export class AppComponent {
     'callform':  'Adicionar Chamado',
     'callslist':  'Chamados',
     'settings':  'Configurações',
-    'call':  'Chamado'
+    'call':  'Chamado',
+    'callsearch':  'Procurar Serviço'
   };
   hasBack: boolean = false;
 

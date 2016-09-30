@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 import { Call, ICall } from './call';
+import { CallStatus } from './call-status.enum';
 
 @Injectable()
 export class CallService {
@@ -14,26 +15,41 @@ export class CallService {
     this.calls = this.af.database.list(`calls`);
   }
 
-  createCall(call:Call): firebase.Promise<any>{
-    console.log(call);
+  // owner functions
+  createCall(call:Call): PromiseLike<any>{
     return this.calls.push(call);
   }
-
-  removeCall(id:string){
-    this.calls.remove(id);
+  updateCall(id:string, change:any): PromiseLike<void>{
+    return this.calls.update(id, change);
   }
-
-  finishCall(id:string){
-    this.calls.update(id,{finished:true, finishedOn:firebase.database['ServerValue']['TIMESTAMP'], viewed: true});
+  removeCall(id:string): PromiseLike<void>{
+    return this.calls.remove(id);
   }
-  acceptCall(id:string){
-    this.calls.update(id,{accepted:true, acceptedOn: firebase.database['ServerValue']['TIMESTAMP'], viewer: true});
+  addHelper(id:string, uid:string): PromiseLike<void>{
+    return this.calls.update(id,{
+      helper:uid,
+      status:CallStatus.Accepting, 
+      ownerAccepted:true, 
+      ownerAcceptedAt:firebase.database['ServerValue']['TIMESTAMP']});
   }
-  rejectCall(id:string){
-    this.calls.update(id,{accepted:false, helper:null, acceptedOn: firebase.database['ServerValue']['TIMESTAMP'], viewer: false});
+  acceptHelper(id:string): PromiseLike<void>{
+    return this.calls.update(id,{
+      status: CallStatus.Accepted,
+      ownerAccepted:true, 
+      ownerAcceptedAt: firebase.database['ServerValue']['TIMESTAMP']});
   }
-
-
+  rejectHelper(id:string): PromiseLike<void>{
+    return this.calls.update(id,{
+      status: CallStatus.New, 
+      helperAccepted:false,
+      helper:null});
+  }
+  finishCall(id:string): PromiseLike<void>{
+    return this.calls.update(id,{
+      status:CallStatus.Finished, 
+      finishedAt:firebase.database['ServerValue']['TIMESTAMP'], 
+      viewed: true});
+  }
   getCalls(uid:string):FirebaseListObservable<any>{
     return this.af.database.list('calls',{
       query:{
@@ -42,6 +58,26 @@ export class CallService {
       }
     });
   }
+
+  // helper functions
+  acceptCall(id:string): PromiseLike<void>{
+    return this.calls.update(id,{
+      status: CallStatus.Accepted,
+      helperAccepted: true, 
+      helperAcceptedAt: firebase.database['ServerValue']['TIMESTAMP']});
+  }
+  rejectCall(id:string): PromiseLike<void>{
+    return this.calls.update(id,{
+      status: CallStatus.New,
+      ownerAccepted:false, 
+      helper: null});
+  }
+  helpCall(id:string): PromiseLike<void>{
+    return this.calls.update(id,{
+      helper:id, 
+      status: CallStatus.Accepting,
+      helperAccepted:true});
+  }
   getServices(uid:string):FirebaseListObservable<any>{
     return this.af.database.list('calls',{
       query:{
@@ -49,5 +85,8 @@ export class CallService {
         equalTo: uid
       }
     });
+  }
+  getCall(id:string):FirebaseObjectObservable<any>{
+    return this.af.database.object(`calls/${id}`);
   }
 }

@@ -74,6 +74,9 @@ md-list{
         width: 100%;
         .call-header{
           display: flex;
+          .call-waiting{
+            color: darkorange;
+          }
           .call-date{
             text-align: right;
           }
@@ -99,5 +102,8 @@ md-list{
 }
 
 .service-waiting{
-  color: orange;
+  color: darkorange;
+}
+.call-waiting p, .call-waiting{
+  color: darkorange;
 }
