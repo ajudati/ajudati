@@ -49,4 +49,7 @@ export class ProfileService {
     let storageRef = firebase.storage().ref();
     return storageRef.child(`images/${uid}`).getDownloadURL().catch(()=>{});
   }
+  getProfiles():FirebaseListObservable<any>{
+    return this.af.database.list('profiles');
+  }
 }

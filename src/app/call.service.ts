@@ -17,8 +17,9 @@ export class CallService {
   }
 
   // owner functions
-  createCall(call:Call): PromiseLike<any>{
-    return this.calls.push(call);
+  async createCall(call:ICall){
+    call.$key = await this.calls.push(call).key;
+    return call;
   }
   updateCall(id:string, change:any): PromiseLike<void>{
     return this.calls.update(id, change);

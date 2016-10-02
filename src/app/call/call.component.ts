@@ -52,6 +52,7 @@ export class CallComponent implements OnInit {
     });
   }
   onHelperSearchClicked(){
+    this.cs.currentCall = this.call;
     this.router.navigate(['helpersearch']);
   }
   onEditClicked(){
