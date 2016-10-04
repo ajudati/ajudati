@@ -4,10 +4,10 @@ import { RegisterComponent }  from './register/register.component';
 import { LoginComponent }     from './login/login.component';
 import { ProfileComponent }   from './profile/profile.component';
 import { CallFormComponent }   from './call-form/call-form.component';
-import { CallSearchComponent }   from './call-search/call-search.component';
 import { HelperSearchComponent }   from './helper-search/helper-search.component';
 import { CallsListComponent } from './calls-list/calls-list.component';
 import { CallComponent }      from './call/call.component';
+import { CallsSearchComponent }      from './calls-search/calls-search.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
@@ -61,13 +61,10 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'callsearch',
-    component: CallSearchComponent,
+    path: 'callssearch',
+    component: CallsSearchComponent,
     canActivate: [AuthGuard]
   }
-
-
-
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

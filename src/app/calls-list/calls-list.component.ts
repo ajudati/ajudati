@@ -19,6 +19,7 @@ export class CallsListComponent implements OnInit {
   currentServices:FirebaseListObservable<any>;
   users:Object;
   viewFinished:boolean;
+  searching:boolean;
   constructor(private cs:CallService, 
               private us:UserService,
               private as:AuthService,
@@ -33,6 +34,7 @@ export class CallsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searching = false;
     this.users = {};
     this.currentCalls   = <FirebaseListObservable<any>>this.cs.getCalls(this.as.id).do(this.sortCalls);
     this.currentServices= <FirebaseListObservable<any>>this.cs.getServices(this.as.id).do(this.sortCalls);
@@ -66,13 +68,13 @@ export class CallsListComponent implements OnInit {
     this.cs.rejectCall(service.$key);
   }
   onAddServiceClicked(){
-    this.route.navigate(['callsearch']);
+    this.route.navigate(['callssearch']);
+    //this.searching = true;
   }
   onRejectHelperClicked(service:ICall){
     this.cs.rejectHelper(service.$key);
   }
   onAcceptHelperClicked(service:ICall){
-    console.log("accept");
     this.cs.acceptHelper(service.$key);
   }
 }

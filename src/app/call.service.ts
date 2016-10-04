@@ -3,6 +3,7 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'a
 
 import { Call, ICall } from './call';
 import { CallStatus } from './call-status.enum';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class CallService {
@@ -10,7 +11,7 @@ export class CallService {
   currentCall:Call;
   calls:FirebaseListObservable<ICall[]>;
 
-  constructor(private af:AngularFire) {
+  constructor(private af:AngularFire, private as:AuthService) {
     this.currentCall = null;
     this.calls = this.af.database.list(`calls`);
   }
@@ -74,7 +75,7 @@ export class CallService {
   }
   helpCall(id:string): PromiseLike<void>{
     return this.calls.update(id,{
-      helper:id, 
+      helper:this.as.id, 
       status: CallStatus.Accepting,
       helperAccepted:true});
   }
@@ -88,5 +89,35 @@ export class CallService {
   }
   getCall(id:string):FirebaseObjectObservable<any>{
     return this.af.database.object(`calls/${id}`);
+  }
+
+  // search functions
+  search(textqry:string):FirebaseObjectObservable<any>{
+    let queryObj:any;
+
+    if(textqry)
+      queryObj = {
+        "multi_match": {
+          "query":                textqry,
+          "type":                 "phrase_prefix", 
+          "fields":               [ "title", "description" ],
+          "tie_breaker":          0.3,
+          "minimum_should_match": "30%" 
+        }
+      };
+    else
+      queryObj = {"match_all": {}};
+
+    let key:any = this.af.database.list('search/request')
+      .push({index:'firebase',type:'call',body:{
+        "query":{
+          "bool":{
+            "filter": {"match":{"status":1}},
+            "must_not":{"match":{"owner":this.as.id}},
+            "must":queryObj
+          }
+        }
+      }}).key;
+    return this.af.database.object(`search/response/${key}`);
   }
 }

@@ -1,3 +1,24 @@
-<p>
-  calls-search works!
-</p>
+<div class="app-content">
+  <form #f (ngSubmit)="onSearch(search.value)">
+    <md-input #search class="full-width" placeholder="Filtrar por título ou descrição"></md-input>
+    <button type="submit" md-raised-button color="primary">Procurar</button>
+  </form>
+  
+  <md-card>
+    <md-list>
+      <md-list-item *ngFor="let item of (results | async)?.hits" (click)="onServiceSelected(item._id)">
+        <div class="call-info md-list-item-text" layout="column">
+          <div class="call-header">
+            <h4 class="call-title">{{item._source.title}}</h4>
+            <p class="call-date">{{item._source.createdAt|date:"dd/MM/yy hh:mm"}}</p>  
+          </div>
+          <p>{{(users[item._source.owner]|async)?.name}}</p>
+          <div class="control">
+            <span class="spacer"></span>
+            <button md-icon-button (click)="onHelping(item._id)"><i class="material-icons">check</i></button>
+          </div>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card>
+</div>
