@@ -42,7 +42,7 @@
     <div class="call-helper-search" *ngIf="!(currentCall|async)?.helper && (currentCall|async)?.owner == uid">
       <button md-raised-button color="primary" (click)="onHelperSearchClicked()">Procurar ajudantes</button>
     </div>
-    <div class="call-helper-search" *ngIf="!(currentCall|async)?.helper && (currentCall|async)?.owner != uid">
+    <div class="call-helper-search" *ngIf="(currentCall|async)?.status == 1 && (currentCall|async)?.owner != uid">
       <button md-raised-button color="primary" (click)="onBeHelperClicked()">Quero ajudar</button>
     </div>
 

@@ -1,4 +1,4 @@
-<md-tab-group>
+<md-tab-group *ngIf="!searching">
   <md-tab>
     <template md-tab-label>Meus pedidos</template>
     <template md-tab-content>
@@ -100,8 +100,8 @@
                     </div>
                     <span class="spacer"></span>
                     <div class="call-actions">
-                      <button md-icon-button *ngIf="!service.helperAccepted && service.status==2" (click)="onServiceAccepted(service)"><i class="material-icons">thumb_up</i></button>
-                      <button md-icon-button *ngIf="!service.helperAccepted && service.status==2" (click)="onServiceRejected(service)"><i class="material-icons">thumb_down</i></button>
+                      <button md-icon-button *ngIf="service.status==2" (click)="onServiceAccepted(service)"><i class="material-icons">thumb_up</i></button>
+                      <button md-icon-button *ngIf="service.status==2" (click)="onServiceRejected(service)"><i class="material-icons">thumb_down</i></button>
                     </div>
                   </div>
                 </div>
@@ -115,7 +115,7 @@
   </md-tab>
 </md-tab-group>
 
-
+<app-calls-search *ngIf="searching"></app-calls-search>
 
   
 

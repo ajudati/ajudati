@@ -47,3 +47,5 @@ id_rsa.pub
 
 .floo
 .flooignore
+
+*.sublime*

@@ -25,8 +25,9 @@ Abra um navegador na página `http://localhost:4200` e voilà.
 | Procurar ajudante              |        |
 | Perfil de usuário (e ajudante) | Feito  |
 | Editar perfil                  | Feito  |
-| Associar ajudante ao chamado   |        |
-| Aceitar chamado do usuário     |        |
+| Associar ajudante ao chamado   | Feito  |
+| Aceitar chamado do usuário     | Feito  |
+| Procurar chamados              |        |
 | Listar chamados                |        |
 | Editar Problema                |        |
 | Chat texto                     |        |

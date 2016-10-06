@@ -19,7 +19,7 @@ export class AppComponent {
     'callslist':  'Chamados',
     'settings':  'Configurações',
     'call':  'Chamado',
-    'callsearch':  'Procurar Serviço'
+    'callssearch':  'Procurar Serviço'
   };
   hasBack: boolean = false;
 
