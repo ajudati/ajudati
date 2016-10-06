@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CallService } from '../call.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
+import { ProfileService } from '../profile.service';
 import { Call, ICall } from '../call';
 
 @Component({
@@ -20,11 +21,14 @@ export class CallsListComponent implements OnInit {
   users:Object;
   viewFinished:boolean;
   searching:boolean;
+  pictures:Object;
   constructor(private cs:CallService, 
               private us:UserService,
               private as:AuthService,
+              private ps:ProfileService,
               private route:Router) { 
     this.users = {};
+    this.pictures = {};
     this.viewFinished = true;
   }
 
@@ -39,17 +43,21 @@ export class CallsListComponent implements OnInit {
     this.currentCalls   = <FirebaseListObservable<any>>this.cs.getCalls(this.as.id).do(this.sortCalls);
     this.currentServices= <FirebaseListObservable<any>>this.cs.getServices(this.as.id).do(this.sortCalls);
     this.currentCalls.subscribe(calls => {
-      let call = calls[0];
-      if(call && call.helper && !this.users.hasOwnProperty(call.helper)){
-        this.users[call.helper] = this.us.getUser(call.helper);
-      }
+      calls.forEach(call=>{
+        if(call && call.helper && !this.users.hasOwnProperty(call.helper)){
+          this.users[call.helper] = this.us.getUser(call.helper);
+          this.pictures[call.helper] = this.ps.getPicture(call.helper);
+        }
+      });
     });
     
     this.currentServices.subscribe(services => {
-      let service = services[0];
-      if(service && !this.users.hasOwnProperty(service.owner)){
-        this.users[service.owner] = this.us.getUser(service.owner);
-      }
+      services.forEach(service=>{
+        if(service && !this.users.hasOwnProperty(service.owner)){
+          this.users[service.owner] = this.us.getUser(service.owner);
+          this.pictures[service.owner] = this.ps.getPicture(service.owner);
+        }
+      });      
     });
   }
   onCheck(id:string){

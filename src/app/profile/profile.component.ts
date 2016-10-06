@@ -14,8 +14,10 @@ import { UserService } from '../user.service';
 })
 export class ProfileComponent implements OnInit {
   editing:boolean;
+  uid:string;
   currentProfile:FirebaseObjectObservable<any>;
   currentUser:FirebaseObjectObservable<any>;
+  pictureURL:firebase.Promise<any>;
   //currentCalls:FirebaseListObservable<any>;
 
   constructor(private route:ActivatedRoute,
@@ -26,9 +28,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.editing = false;
     this.route.params.forEach((params: Params) =>{
-      let uid:string = params['uid'];
-      this.currentProfile = this.ps.getProfile(uid);
-      this.currentUser    = this.us.getUser(uid);
+      this.uid = params['uid'];
+      this.currentProfile = this.ps.getProfile(this.uid);
+      this.currentUser    = this.us.getUser(this.uid);
+      this.pictureURL = this.ps.getPicture(this.uid);
     });
   }
   showForm(){
@@ -36,6 +39,7 @@ export class ProfileComponent implements OnInit {
   }
   hideForm(){
     this.editing = false;
+    this.pictureURL = this.ps.getPicture(this.uid);
   }
 
 }
