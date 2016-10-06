@@ -39,7 +39,7 @@
                   <p>{{call.description}}</p>
                   <div class="call-info">
                     <div class="call-person" *ngIf="call.helper" [ngClass]="{'call-waiting':call.status==2}">
-                        <p>{{(users[call.helper]|async)?.name}} <span *ngIf="call.status==2 && !call.ownerAccepted"> quer ajudar</span></p>
+                        <img class="user-photo-small" src="{{pictures[call.helper]|async}}"/><p>{{(users[call.helper]|async)?.name}} <span *ngIf="call.status==2 && !call.ownerAccepted"> quer ajudar</span></p>
                         <i *ngIf="call.status==2 && !call.helperAccepted" class="material-icons service-waiting">schedule</i>
                         
                         <span *ngIf="!call.ownerAccepted && call.status==2" [ngClass]="{'call-waiting':call.status==2}">
@@ -96,7 +96,7 @@
                   <p>{{service.description}}</p>
                   <div class="call-info">
                     <div class="call-person">
-                      <p>{{(users[service.owner]|async)?.name}}</p>
+                      <img class="user-photo-small" src="{{pictures[service.owner]|async}}"><p>{{(users[service.owner]|async)?.name}}</p>
                     </div>
                     <span class="spacer"></span>
                     <div class="call-actions">

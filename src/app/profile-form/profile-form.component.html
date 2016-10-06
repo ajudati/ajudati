@@ -26,6 +26,8 @@
         <md-hint class="md-warn" [hidden]="description.valid || description.pristine">Descrição não pode estar vazio. Escreva algo sobre você.</md-hint>
       </md-input>
 
+      <input type="file" (change)="fileChangeEvent($event.target.files)" accept="image/*">
+
       
       <app-chips placeholder="Habilidades (separe por vírgulas)" id="skills" name="skills" class="full-width" #skills="ngModel" [(ngModel)]="model.skills"></app-chips>
       

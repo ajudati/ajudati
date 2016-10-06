@@ -37,4 +37,16 @@ export class ProfileService {
   getProfile(uid: string):FirebaseObjectObservable<any>{
     return this.af.database.object(`profiles/${uid}`);
   }
+
+  async updatePicture(uid:string, image:File){
+    let name = image.name.split('.');
+    name[0] = uid;
+
+    var storageRef = firebase.storage().ref();
+    await storageRef.child(`images/${uid}`).put(image,{contentType: image.type});
+  }
+  getPicture(uid:string):firebase.Promise<any>{
+    let storageRef = firebase.storage().ref();
+    return storageRef.child(`images/${uid}`).getDownloadURL().catch(()=>{});
+  }
 }

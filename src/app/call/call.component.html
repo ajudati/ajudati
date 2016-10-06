@@ -26,8 +26,8 @@
           <p *ngIf="(currentCall|async)?.status == 2 && (currentCall|async)?.helper == uid && !(currentCall|async)?.helperAccepted">
             Você foi selecionado como ajudante. Gostaria de ajudar?
           </p>
-          <p *ngIf="(currentCall|async)?.status > 2">
-            Atendido por {{(users[(currentCall|async)?.helper]|async)?.name}}. 
+          <p *ngIf="(currentCall|async)?.status >= 2">
+            Atendido por <img class="user-photo-small" src="{{pictures[(currentCall|async)?.helper]|async}}">{{(users[(currentCall|async)?.helper]|async)?.name}}. 
           </p>
           <p *ngIf="(currentCall|async)?.status == 2 && !(currentCall|async)?.ownerAccepted">
             Esperando aceitação de {{(users[(currentCall|async)?.owner]|async)?.name}}.<i class="material-icons">schedule</i>
