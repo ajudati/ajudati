@@ -17,14 +17,14 @@ export class CallFormComponent implements OnInit {
               private af:AuthService) { }
 
   ngOnInit() {
-
+    this.cs.currentCall = null;
   }
   async onSubmit() {
     let newCall:Call = new Call();
     Object.assign(newCall,this.model);
     if(this.af.authenticated){
       newCall.owner = this.af.id;
-      newCall = await this.cs.createCall(newCall);  
+      newCall = await this.cs.createCall(newCall);
     }
     this.cs.currentCall = newCall;
     this.router.navigate(['/helpersearch']);
