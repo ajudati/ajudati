@@ -26,7 +26,7 @@ export class ChipsComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder:string = '';
 
   constructor(){
-    this.tags = ['oi','sdlkfj'];
+    this.tags = [];
     this.inputFocused = false;
   }
   onKeyPress(key:string, length:number){
@@ -34,6 +34,7 @@ export class ChipsComponent implements OnInit, ControlValueAccessor {
       this.tags.push(this.model.currentTag);
       this.model.currentTag = "";
       this.onTouchedCallback();
+      this.onChangeCallback(this.tags);
       return false;
     }else if(key === 'Backspace'){
       if(this.model.currentTag === ''){
