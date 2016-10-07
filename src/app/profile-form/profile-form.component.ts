@@ -38,12 +38,16 @@ export class ProfileFormComponent implements OnInit {
   async onSubmit(){
     await Promise.all([
       this.currentUser.update({name:this.model.name}),
-      this.ps.updatePicture(this.model.$key,this.filesToUpload[0]),
+      this.uploadPicture(),
       this.currentProfile.update({description:this.model.description,skills:this.model.skills})
     ]);
     this.saved.emit();
   }
   fileChangeEvent(files: Array<File>){
     this.filesToUpload = files;
+  }
+  uploadPicture(){
+    if(this.filesToUpload.length != 0)
+      this.ps.updatePicture(this.model.$key, this.filesToUpload[0]);
   }
 }
