@@ -3,6 +3,13 @@
   <div *ngIf="(currentCall|async)?.owner!=uid">Serviços</div>
 </div>
 <div class="app-content">
+  <div class="call-section call-controls" *ngIf="(currentCall|async)?.owner == uid ">
+    <button md-icon-button color="primary" *ngIf="!(currentCall|async)?.status == 3"><i class="material-icons">chat</i></button>
+    <button md-button color="primary" *ngIf="!(currentCall|async)?.helper && (currentCall|async)?.owner == uid" (click)="onHelperSearchClicked()">Procurar ajudantes</button>
+    <button *ngIf="!(currentCall|async)?.finished" md-icon-button color="primary" (click)="onEditClicked()"><i class="material-icons">edit</i></button>
+    <button *ngIf="!(currentCall|async)?.status != 5 && (currentCall|async)?.accepted &&   (currentCall|async)?.helper" md-button color="primary" (click)="onFinishClicked()">Finalizar</button>
+    <button md-icon-button color="warn" *ngIf="!(currentCall|async)?.finished" (click)="onRemoveClicked()"><i class="material-icons">delete</i></button>
+  </div>
   <h3 [ngClass]="{'call-finished':(currentCall|async)?.status==5}" class="call-title">
     {{(currentCall|async)?.title}}
     <i *ngIf="(currentCall|async)?.status==5" class="material-icons">check_circle</i>
@@ -39,22 +46,16 @@
       <span class="spacer"></span>
       <button md-icon-button *ngIf="!(currentCall|async)?.finished && (currentCall|async)?.owner==uid"><i class="material-icons">close</i></button>
     </div>
-    <div class="call-helper-search" *ngIf="!(currentCall|async)?.helper && (currentCall|async)?.owner == uid">
-      <button md-raised-button color="primary" (click)="onHelperSearchClicked()">Procurar ajudantes</button>
-    </div>
     <div class="call-helper-search" *ngIf="(currentCall|async)?.status == 1 && (currentCall|async)?.owner != uid">
       <button md-raised-button color="primary" (click)="onBeHelperClicked()">Quero ajudar</button>
     </div>
 
   </div>
-  <div class="call-section call-controls" *ngIf="(currentCall|async)?.owner == uid ">
-    <button *ngIf="!(currentCall|async)?.finished" md-button color="primary" (click)="onEditClicked()">Editar</button>
-    <button *ngIf="!(currentCall|async)?.status != 5 && (currentCall|async)?.accepted &&   (currentCall|async)?.helper" md-button color="primary" (click)="onFinishClicked()">Finalizar</button>
-    <button md-raised-button color="warn" *ngIf="!(currentCall|async)?.finished" (click)="onRemoveClicked()">Remover</button>
-  </div>
   <div class="call-section call-controls" *ngIf="(currentCall|async)?.helper == uid ">
     <button *ngIf="!(currentCall|async)?.accepted" md-button color="primary" (click)="onAcceptedClicked()">Aceitar</button>
     <button *ngIf="!(currentCall|async)?.accepted" md-button color="warn" (click)="onRejectedClicked()">Rejeitar</button>
   </div>
+
+  <app-call-finish *ngIf="(currentCall|async)?.status == 3 || (currentCall|async)?.status == 4"></app-call-finish>
 
 </div>

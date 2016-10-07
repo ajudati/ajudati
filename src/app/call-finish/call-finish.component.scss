@@ -1,0 +1,28 @@
+
+.call-evaluation {
+  text-align: center;
+  display: flex;
+  justify-content:center;
+  i{
+    color: rgba(0,0,0,0);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    font-size: 48px;
+    cursor: pointer;
+    &.filled{
+      color: yellow;
+    }
+    &.over{
+      color: rgba(255,255,0,0.5);
+    }
+  }
+}
+.call-payment{
+  .call-payment-types{
+    display: flex;
+    justify-content:center;
+    *{
+      margin: 5px;
+    }
+  }
+  
+}

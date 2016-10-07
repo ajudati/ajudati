@@ -15,7 +15,8 @@ $primary: #009688;
   margin-bottom: 16px;
 }
 .call-controls{
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 .call-helper{
   display: flex;

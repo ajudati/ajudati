@@ -1,0 +1,25 @@
+<div class="call-finish">
+  <form #f novalidate (ngSubmit)="onFinishSubmit()">
+    <div class="call-payment">
+      <p>Pague com</p>
+      <div class="call-payment-types">
+        <button md-raised-button color="primary">PayPal</button>
+        <button md-raised-button color="primary">PagSeguro</button>
+      </div>
+    </div>
+    <p>Avaliação</p>
+    <div class="call-evaluation">
+      <i [ngClass]="{'filled':score >= 1, 'over':over >= 1 && score < 1}" (click)="score=1" (mouseover)="over = 1" (mouseout)="over=0" class="material-icons">star</i>
+      <i [ngClass]="{'filled':score >= 2, 'over':over >= 2 && score < 2}" (click)="score=2" (mouseover)="over = 2" (mouseout)="over=0" class="material-icons">star</i>
+      <i [ngClass]="{'filled':score >= 3, 'over':over >= 3 && score < 3}" (click)="score=3" (mouseover)="over = 3" (mouseout)="over=0" class="material-icons">star</i>
+      <i [ngClass]="{'filled':score >= 4, 'over':over >= 4 && score < 4}" (click)="score=4" (mouseover)="over = 4" (mouseout)="over=0" class="material-icons">star</i>
+      <i [ngClass]="{'filled':score >= 5, 'over':over >= 5 && score < 5}" (click)="score=5" (mouseover)="over = 5" (mouseout)="over=0" class="material-icons">star</i>
+    </div>
+    <div class="call-comments">
+      <md-input #comments name="comments" id="comments" class="full-width" placeholder="Comentários"></md-input>
+    </div>
+    <div class="call-finish-controls">
+      <button md-raised-button [disabled]="!f.valid">Finalizar</button>
+    </div>
+  </form>
+</div>

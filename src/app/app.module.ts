@@ -44,6 +44,7 @@ import { FocusDirective } from './focus.directive';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
 import { CallComponent } from './call/call.component';
+import { CallFinishComponent } from './call-finish/call-finish.component';
 
 
 const myFirebaseConfig = {
@@ -78,7 +79,8 @@ const myFirebaseAuthConfig = {
     FocusDirective,
     SettingsComponent,
     ProfileFormComponent,
-    CallComponent
+    CallComponent,
+    CallFinishComponent
   ],
   imports: [
     BrowserModule,
