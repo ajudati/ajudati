@@ -24,7 +24,7 @@ export class CallFormComponent implements OnInit {
     Object.assign(newCall,this.model);
     if(this.af.authenticated){
       newCall.owner = this.af.id;
-      newCall = await this.cs.createCall(newCall);
+      await this.cs.createCall(newCall);
     }
     this.cs.currentCall = newCall;
     this.router.navigate(['/helpersearch']);

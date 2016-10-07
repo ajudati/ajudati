@@ -72,4 +72,5 @@ export class UserService {
   async updateUser(uid: string, changes: any):Promise<void>{
     return await this.af.database.object(`users/${uid}`).update(changes);
   }
+
 }

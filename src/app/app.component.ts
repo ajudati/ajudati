@@ -19,7 +19,8 @@ export class AppComponent {
     'callslist':  'Chamados',
     'settings':  'Configurações',
     'call':  'Chamado',
-    'callssearch':  'Procurar Serviço'
+    'callssearch':  'Procurar Serviço',
+    'helpersearch': 'Escolha o seu Ajudante'
   };
   hasBack: boolean = false;
 

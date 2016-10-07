@@ -16,6 +16,8 @@ import { MdTabsModule } from '@angular2-material/tabs';
 import * as firebase from 'firebase';
 import { AuthProviders, AuthMethods, AngularFireModule } from 'angularfire2';
 
+import { Ng2PaginationModule } from 'ng2-pagination';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -83,6 +85,8 @@ const myFirebaseAuthConfig = {
     FormsModule,
     HttpModule,
     routing,
+
+    Ng2PaginationModule,
 
     MdButtonModule,
     MdInputModule,
