@@ -30,7 +30,7 @@ export class ChipsComponent implements OnInit, ControlValueAccessor {
     this.inputFocused = false;
   }
   onKeyPress(key:string, length:number){
-    if(key===',' || key===';'){
+    if(key===',' || key===';' || key === 'Enter'){
       this.tags.push(this.model.currentTag);
       this.model.currentTag = "";
       this.onTouchedCallback();
