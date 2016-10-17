@@ -2,13 +2,14 @@ import { Injectable  } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Subject } from 'rxjs';
 import { IProfile, Profile } from './profile';
+import { AuthService } from './auth.service';
 
 /**
  * @brief      Class for profile service.
  */
 @Injectable()
 export class ProfileService {
-  constructor(private af:AngularFire) { }
+  constructor(private af:AngularFire, private as:AuthService) { }
 
   /**
    * @brief      Creates a profile.
@@ -51,5 +52,31 @@ export class ProfileService {
   }
   getProfiles():FirebaseListObservable<any>{
     return this.af.database.list('profiles');
+  }
+
+  searchSkills(queries:string[]):FirebaseObjectObservable<any>{
+    let queryObj:any;
+    if(queries)
+    {
+      for(var i=0; i<queries.length; i++) queries[i] = queries[i].toLowerCase();
+      queryObj = {
+        "terms": {
+          "skills": queries
+        }
+      };
+    }
+    else
+      queryObj = {"match_all": {}};
+
+    let key:any = this.af.database.list('search/request')
+      .push({index:'firebase',type:'profile',body:{
+        "query":{
+          "bool":{
+            "must_not":{"match":{"_id":this.as.id}},
+            "must":queryObj
+          }
+        }
+      }}).key;
+    return this.af.database.object(`search/response/${key}`);
   }
 }

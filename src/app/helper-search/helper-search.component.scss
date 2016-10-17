@@ -55,3 +55,16 @@ md-list{
 .call-info{
   margin-bottom: 5px;
 }
+
+.profile-skills{
+  list-style:none;
+  margin-top: 6px;
+  padding:0px;
+  li{
+    display:inline;
+    background: #dddddd;
+    border-radius: 15px;
+    padding: 7px;
+    margin: 1px;
+  }
+}
