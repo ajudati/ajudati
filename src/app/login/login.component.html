@@ -1,42 +1,51 @@
 <div class="app-content">
   <md-hint class="md-warn" *ngIf="hasError">Não consegui te autenticar. O e-mail e a senha estão certos?</md-hint>
-  <md-card class="app-input-section">
-    <md-card-title>Entrar no sistema</md-card-title>
-    <form #f="ngForm" novalidate (ngSubmit)="onSubmit()">
-      <md-input 
-        dividerColor="{{email.valid || email.pristine?'primary':'warn'}}" 
-        class="full-width" 
-        type="email" 
-        name="email" 
-        id="email" 
-        placeholder="Email" 
-        required 
-        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" 
-        #email="ngModel" 
-        [(ngModel)]="model.email">
-        <md-hint class="md-warn" [hidden]="email.valid || email.pristine">Email vazio ou diferente do formato usuario@dominio.com</md-hint>
-      </md-input>
-      
-      <md-input
-        dividerColor="{{password.valid || password.pristine?'primary':'warn'}}" 
-        class="full-width"
-        type="password" 
-        name="password"
-        id="password"
-        placeholder="Senha"
-        required 
-        minlength="8"
-        maxlength="32"
-        #password="ngModel"
-        [(ngModel)]="model.password">
-        <md-hint class="md-warn" [hidden]="password.valid || password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
-      </md-input>
-      
-      <md-card-actions>
-        <button md-raised-button color="primary" [disabled]="!f.valid" >Entrar</button>
-        <button md-button>Limpar</button>
-      </md-card-actions>
-    </form>
+  <md-card>
+    <md-card-title>usando alguma rede social</md-card-title>
+    <md-card-content>
+      <div class="app-social-buttons">
+        <button md-raised-button class="btn-github" (click)='signInWithGithub()'>Github</button>
+        <button md-raised-button class="btn-facebook" (click)='signInWithFacebook()'>Facebook</button>
+        <button md-raised-button class="btn-twitter" (click)='signInWithTwitter()'>Twitter</button>
+        <button md-raised-button class="btn-google" (click)='signInWithGoogle()'>Google</button>
+      </div>
+    </md-card-content>
+  </md-card>
+  <md-card>
+    <md-card-title>ou por login e senha</md-card-title>
+    <md-card-content>
+      <form #f="ngForm" novalidate (ngSubmit)="onSubmit()">
+        <md-input 
+          dividerColor="{{email.valid || email.pristine?'primary':'warn'}}" 
+          class="full-width" 
+          type="email" 
+          name="email" 
+          id="email" 
+          placeholder="Email" 
+          required 
+          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" 
+          #email="ngModel" 
+          [(ngModel)]="model.email">
+          <md-hint class="md-warn" [hidden]="email.valid || email.pristine">Email vazio ou diferente do formato usuario@dominio.com</md-hint>
+        </md-input>
+        <md-input
+          dividerColor="{{password.valid || password.pristine?'primary':'warn'}}" 
+          class="full-width"
+          type="password" 
+          name="password"
+          id="password"
+          placeholder="Senha"
+          required 
+          minlength="8"
+          maxlength="32"
+          #password="ngModel"
+          [(ngModel)]="model.password">
+          <md-hint class="md-warn" [hidden]="password.valid || password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
+        </md-input>
+        <button type="submit" md-raised-button color="primary" [disabled]="!f.valid" >Entrar</button>
+        <button md-button (click)="clearFields()">Limpar</button>
+      </form>
+    </md-card-content>
   </md-card>
 </div>
 

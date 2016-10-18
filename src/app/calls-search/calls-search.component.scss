@@ -1,0 +1,32 @@
+.app-content /deep/ md-card{
+  padding: 0px;
+}
+
+.app-content /deep/ md-list{
+  padding-top:0px;
+  /deep/ md-list-item .md-list-item{
+    cursor:pointer;
+    height:auto;
+    padding:5px;
+    &:hover{
+      background:#f1f1f1;
+    }
+  }
+}
+
+.call-info{
+  display: flex;
+  flex-direction:column;
+  flex: 1;
+  .call-header{
+    display:flex;
+    flex: 1;
+    .call-title{
+      flex: 1;
+    }  
+  }
+  .control{
+    display: flex;
+  }
+  
+}

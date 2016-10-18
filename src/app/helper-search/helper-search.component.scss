@@ -1,0 +1,70 @@
+$primary: #009688;
+/deep/ md-tab-group {
+  .md-tab-header{
+    justify-content: center;
+    background: $primary;
+    color: white;
+    .md-tab-label{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.md-tab-active{
+        background: rgba(178, 223, 219, 0.3);
+        opacity: 1;
+      }
+    }
+    md-ink-bar{
+      background: white;
+    }
+  }
+}
+
+label{
+  font-size: 12px;
+  color:rgba(0, 0, 0, 0.38);
+}
+
+md-card{
+  padding:0px;
+  margin:0px;
+}
+
+md-list{
+  cursor:pointer;
+  padding:0px;
+  md-list-item {
+    /deep/ .md-list-item{
+      padding: 5px;
+      height:auto;
+      min-height:51px;
+      align-items:normal;
+      &:hover{
+        background:#f1f1f1;
+      }
+      .md-list-item-text{
+        width: 100%;
+        .helper-header{
+          display: flex;
+        }
+      }
+    }
+  }
+
+}
+
+.call-info{
+  margin-bottom: 5px;
+}
+
+.profile-skills{
+  list-style:none;
+  margin-top: 6px;
+  padding:0px;
+  li{
+    display:inline;
+    background: #dddddd;
+    border-radius: 15px;
+    padding: 7px;
+    margin: 1px;
+  }
+}

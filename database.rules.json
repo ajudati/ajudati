@@ -1,6 +1,17 @@
 {
   "rules": {
     ".read": "auth != null",
-    ".write": "auth != null"
+    ".write": "auth != null",
+    "calls":{
+      ".indexOn":["owner","helper"]
+    },
+    "users":{
+      ".read":"true",
+      ".write":"true"
+    },
+    "profiles":{
+      ".read":"true",
+      ".write":"true"
+    }
   }
 }

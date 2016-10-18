@@ -41,3 +41,11 @@ server/**/*.js
 id_rsa
 id_rsa.pub
 .firebaserc
+
+# Vim temporary
+*.swp
+
+.floo
+.flooignore
+
+*.sublime*

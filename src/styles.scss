@@ -1,11 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 .spacer{
   flex:1;
+  display: flex;
 }
+
 html, body, app-root{
   margin: 0;
   height: 100%;
   min-height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #fafafa;
 }
 body, app-root{
   display:flex;
@@ -14,7 +18,7 @@ body, app-root{
 app-header{
   order:1;
   flex-shrink:0;
-  flex-basis: 50px;
+  // flex-basis: 50px;
 }
 main{
   order: 2;
@@ -24,8 +28,85 @@ main{
 app-footer{
   order:3;
   flex-shrink:0;
-  flex-basis:50px;
+  // flex-basis:50px;
 }
 .full-width{
   width:100%;
+}
+body md-card-actions{
+  margin:0px;
+}
+.app-content{
+  padding:6px;
+}
+.app-content md-card{
+  margin:10px;
+}
+body md-card-title{
+  font-size:16px;
+}
+.md-hint.md-warn{
+  padding-top:1px;
+  color:red;
+  font-size:12px;
+}
+.app-title{
+  font-size:20px;
+  font-weight: normal;
+  padding-bottom: 3px;
+  padding-top: 6px;
+}
+.app-subtitle{
+  font-size:16px;
+  font-weight: normal;
+}
+h3{
+  font-size: 16px;
+  font-weight: 400px;
+  letter-spacing: .01em;
+  line-height: 1.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+h4{
+  font-size: 14px;
+  letter-spacing: .01em;
+  margin: 3px 0 1px;
+  font-weight: 400;
+  line-height: 1.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+p{
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  margin: 0;
+  line-height: 1.6em;
+  color: rgba(0,0,0,0.54);
+}
+.md-button-wrapper{
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+
+body md-toolbar{
+  min-height: 54px;
+  md-toolbar-row{
+    height: 54px;
+  }
+}
+
+.user-photo-small{
+  width:32px;
+  height:32px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  box-shadow: 1px 2px 2px rgba(0,0,0,0.6);
+  border: 2px solid #FFF;
 }

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
+
+import { ProfileService } from '../profile.service';
+//import { ProfileFormComponent } from '../profile-form/profile-form.component';
+import { CallService } from '../call.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,16 +13,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user  = {name: 'Fulano da Silva'};
-  calls = [
-    {title: 'Meu computador quebrou'},
-    {title: 'Minha impressora não funciona'},
-    {title: 'O monitor não quer ligar'}
-  ];
+  editing:boolean;
+  uid:string;
+  currentProfile:FirebaseObjectObservable<any>;
+  currentUser:FirebaseObjectObservable<any>;
+  pictureURL:firebase.Promise<any>;
+  //currentCalls:FirebaseListObservable<any>;
 
-  constructor() { }
+  constructor(private route:ActivatedRoute,
+              private ps:ProfileService,
+              private us:UserService,
+              private cs:CallService) { }
 
   ngOnInit() {
+    this.editing = false;
+    this.route.params.forEach((params: Params) =>{
+      this.uid = params['uid'];
+      this.currentProfile = this.ps.getProfile(this.uid);
+      this.currentUser    = this.us.getUser(this.uid);
+      this.pictureURL = this.ps.getPicture(this.uid);
+    });
+  }
+  showForm(){
+    this.editing = true;
+  }
+  hideForm(){
+    this.editing = false;
+    this.pictureURL = this.ps.getPicture(this.uid);
   }
 
 }

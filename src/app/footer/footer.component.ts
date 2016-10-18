@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, Output, Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,17 +9,24 @@ import { UserService } from '../user.service';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  private currentSection:number;
 
-  constructor(private us: UserService, private router: Router) {
+  @Output() signOut: EventEmitter<void>;
+  @Output() profileClicked: EventEmitter<void>;
+  @Output() settingsClicked: EventEmitter<void>;
+  @Output() callsListClicked: EventEmitter<void>;
+  @Input()  authenticated:boolean;
+  @Input()  uid:string;
 
+  constructor() {
+    this.signOut = new EventEmitter<void>(false);
   }
 
   ngOnInit() {
 
   }
 
-  logout() {
-    this.us.logout();
-    this.router.navigate(['/login']);
+  set active(section:number){
+    this.currentSection = section;
   }
 }

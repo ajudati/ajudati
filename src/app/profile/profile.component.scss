@@ -1,0 +1,48 @@
+@mixin flex-center{
+  display:flex;
+  align-items:center;
+}
+.profile-header{
+  @include flex-center;
+  .profile-photo{
+    @include flex-center;
+    justify-content: center;
+    padding: 5px;
+    padding-right: 10px;
+    img{
+      width:80px;
+      height:80px;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      border-radius: 50%;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.8);
+      border: 3px solid #FFF;
+    }
+  } 
+  .profile-description{
+    font-size:12px;
+    color: #888888;
+  }
+}
+
+.small{
+  font-size:12px;
+  color: #888888;
+}
+.profile-label{
+  font-size:12px;
+  color: #888888; 
+}
+.profile-skills{
+  list-style:none;
+  margin-top: 6px;
+  padding:0px;
+  li{
+    display:inline;
+    background: #dddddd;
+    border-radius: 15px;
+    padding: 7px;
+    margin: 1px;
+  }
+}
+

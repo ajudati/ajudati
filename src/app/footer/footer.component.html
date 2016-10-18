@@ -1,13 +1,18 @@
 <footer>
   <md-toolbar color="primary">
-    <button md-button routerLink="/callform">Início</button>
-    <span class="spacer"></span>
-    <span *ngIf="!us.user?.auth">
-      <button md-button routerLink="/login">Login</button>
-      <button md-raised-button color="warn" routerLink="/register">Cadastrar</button>
-    </span>
-    <span *ngIf="us.user?.auth">
-      <button md-button (click)="logout()">Logout</button>
-    </span>
+    <div class="spacer" *ngIf="!authenticated">
+      <button md-icon-button routerLink="/callform"><i class="material-icons">home</i></button>
+      <span class="spacer"></span>
+      <button md-icon-button routerLink="/login"><i class="material-icons">input</i></button>
+      <button md-icon-button routerLink="/register"><i class="material-icons">person_add</i></button>
+    </div>
+
+    <div class="spacer" *ngIf="authenticated">
+      <button md-icon-button routerLink="/callslist"><i class="material-icons">contact_phone</i></button>
+      <span class="spacer"></span>
+      <button md-icon-button routerLink='settings'><i class="material-icons">settings</i></button>
+      <button md-icon-button routerLink='/profile/{{uid}}'><i class="material-icons">account_circle</i></button>
+      <button md-icon-button (click)="signOut.emit()"><i class="material-icons">exit_to_app</i></button>
+    </div>
   </md-toolbar>
 </footer>

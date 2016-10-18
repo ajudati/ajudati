@@ -1,0 +1,60 @@
+<div class="subtitle">
+  <div *ngIf="(currentCall|async)?.owner==uid">Meus pedidos</div>
+  <div *ngIf="(currentCall|async)?.owner!=uid">Serviços</div>
+</div>
+<div class="app-content">
+  <h3 [ngClass]="{'call-finished':(currentCall|async)?.status==5}" class="call-title">
+    {{(currentCall|async)?.title}}
+    <i *ngIf="(currentCall|async)?.status==5" class="material-icons">check_circle</i>
+  </h3>
+  <div class="call-info">
+    <p>
+      Criado por   {{(users[(currentCall|async)?.owner]|async)?.name}}
+    </p>
+    <span class="spacer"></span>
+    <p>{{(currentCall|async)?.createdAt|date:"dd/MM/yy hh:mm"}}</p>
+    
+  </div>
+  
+  <div class="call-section">
+    {{(currentCall|async)?.description}}
+  </div>
+  <div class="call-section">
+    <div class="call-helper" *ngIf="(currentCall|async)?.helper">
+      <div class="call-helper-info" [ngClass]="{'call-waiting':(currentCall|async)?.helper && (currentCall|async)?.status==2}">
+        <div>
+          <p *ngIf="(currentCall|async)?.status == 2 && (currentCall|async)?.helper == uid && !(currentCall|async)?.helperAccepted">
+            Você foi selecionado como ajudante. Gostaria de ajudar?
+          </p>
+          <p *ngIf="(currentCall|async)?.status >= 2">
+            Atendido por <img class="user-photo-small" src="{{pictures[(currentCall|async)?.helper]|async}}">{{(users[(currentCall|async)?.helper]|async)?.name}}. 
+          </p>
+          <p *ngIf="(currentCall|async)?.status == 2 && !(currentCall|async)?.ownerAccepted">
+            Esperando aceitação de {{(users[(currentCall|async)?.owner]|async)?.name}}.<i class="material-icons">schedule</i>
+          </p>
+        </div>
+        
+      </div>
+      
+      <span class="spacer"></span>
+      <button md-icon-button *ngIf="!(currentCall|async)?.finished && (currentCall|async)?.owner==uid"><i class="material-icons">close</i></button>
+    </div>
+    <div class="call-helper-search" *ngIf="!(currentCall|async)?.helper && (currentCall|async)?.owner == uid">
+      <button md-raised-button color="primary" (click)="onHelperSearchClicked()">Procurar ajudantes</button>
+    </div>
+    <div class="call-helper-search" *ngIf="(currentCall|async)?.status == 1 && (currentCall|async)?.owner != uid">
+      <button md-raised-button color="primary" (click)="onBeHelperClicked()">Quero ajudar</button>
+    </div>
+
+  </div>
+  <div class="call-section call-controls" *ngIf="(currentCall|async)?.owner == uid ">
+    <button *ngIf="!(currentCall|async)?.finished" md-button color="primary" (click)="onEditClicked()">Editar</button>
+    <button *ngIf="!(currentCall|async)?.status != 5 && (currentCall|async)?.accepted &&   (currentCall|async)?.helper" md-button color="primary" (click)="onFinishClicked()">Finalizar</button>
+    <button md-raised-button color="warn" *ngIf="!(currentCall|async)?.finished" (click)="onRemoveClicked()">Remover</button>
+  </div>
+  <div class="call-section call-controls" *ngIf="(currentCall|async)?.helper == uid ">
+    <button *ngIf="!(currentCall|async)?.accepted" md-button color="primary" (click)="onAcceptedClicked()">Aceitar</button>
+    <button *ngIf="!(currentCall|async)?.accepted" md-button color="warn" (click)="onRejectedClicked()">Rejeitar</button>
+  </div>
+
+</div>
