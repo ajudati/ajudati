@@ -30,7 +30,7 @@ Abra um navegador na página `http://localhost:4200` e voilà.
 | Procurar chamados              | Feito     |
 | Listar chamados                | Feito     |
 | Editar Problema                |           |
-| Chat texto                     | Andamento |
+| Chat texto                     | Feito     |
 | Chat imagens                   |           |
 | Chat áudio                     |           |
 | Chat câmera                    |           |

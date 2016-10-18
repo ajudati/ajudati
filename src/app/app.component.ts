@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { ChatService } from './chat.service';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { ProfileService } from './profile.service';
@@ -20,13 +20,15 @@ export class AppComponent {
     'settings':  'Configurações',
     'call':  'Chamado',
     'callssearch':  'Procurar Serviço',
-    'helpersearch': 'Escolha o seu Ajudante'
+    'helpersearch': 'Escolha o seu Ajudante',
+    'chat' : 'Chat'
   };
   hasBack: boolean = false;
 
   constructor(private as:AuthService, 
               private us:UserService,
               private ps:ProfileService,
+	      private chatService: ChatService,
               private router: Router) { }
 
   get title(): string {

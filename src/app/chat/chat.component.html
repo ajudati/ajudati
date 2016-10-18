@@ -1,3 +1,41 @@
-<p>
-  chat works!
-</p>
+<div class="app-content">
+	<!-- <md-card class="app-input-section"> -->
+  <div class="chat-messages">
+    <div #messages id="messages" class="chat-messages-container">
+      <div *ngFor="let msg of (currentChat | async)?.messages" class="chat-message" [ngClass]="{'chat-me':msg.uid==us.user.uid,'chat-other':msg.uid!=us.user.uid}">
+        <div class="chat-message-container">
+          <div class="chat-message-user" *ngIf="msg.uid!=us.user.uid">{{users[msg.uid]?.name}}</div>
+          <div class="chat-message-text">{{msg.message}}</div>
+          <div class="chat-message-time">{{msg.timeStamp}}</div>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+	<!-- <div *ngFor="let msg of (currentChat | async)?.messages">
+  	<div *ngIf="msg.uid==us.user.uid">
+  		<div style="width:auto;max-width:500px;word-wrap: break-word;float:right;background-color: rgba(87, 255, 0, 0.3);box-shadow: 1px 1px 2px rgba(0,0,0,0.3);border-radius: 5px;padding:2px">
+  			<div style="font-size:10px;font-weight: bold;"> {{users[msg.uid]?.name}}</div>
+  			<div>{{msg.message}}</div>
+  			<div style="font-style:italic;font-size:10px;text-align:right">{{msg.timeStamp}}</div>
+  		</div>
+  		<br/>
+  	</div>
+  	<div *ngIf="msg.uid!=us.user.uid">
+  		<div style="width:auto;max-width:500px;word-wrap: break-word;float:left;background-color:white;box-shadow: 1px 1px 2px rgba(0,0,0,0.3);border-radius: 5px;padding:2px">
+  			<div style="font-size:10px;font-weight: bold;"> {{users[msg.uid]?.name}}</div>
+  			<div>{{msg.message}}</div>
+  			<div style="font-style:italic;font-size:10px;text-align:right">{{msg.timeStamp}}</div>
+  		</div>
+  		<br/>
+  	</div>
+  	<br/>
+  </div> -->
+  <div>
+    <div style="width:100%;display:flex;">
+      <textarea #newtext="ngModel" (keydown)="validateMessage($event)" [(ngModel)]="currentText" placeholder="" style="flex:1;border:1px solid rgba(0,0,0,0.2); border-radius: 5px;margin-right:5px;" ></textarea>
+      <button md-fab color="primary" (click)="submitMessage();"><i class="material-icons">send</i></button>
+    </div>  
+  </div>
+	<!-- </md-card> -->
+</div>

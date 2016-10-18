@@ -49,3 +49,7 @@ id_rsa.pub
 .flooignore
 
 *.sublime*
+
+.project
+.buildpath
+*desktop.ini

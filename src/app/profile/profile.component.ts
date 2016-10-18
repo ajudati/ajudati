@@ -6,6 +6,7 @@ import { ProfileService } from '../profile.service';
 //import { ProfileFormComponent } from '../profile-form/profile-form.component';
 import { CallService } from '../call.service';
 import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +24,8 @@ export class ProfileComponent implements OnInit {
   constructor(private route:ActivatedRoute,
               private ps:ProfileService,
               private us:UserService,
-              private cs:CallService) { }
+              private cs:CallService,
+              private as:AuthService) { }
 
   ngOnInit() {
     this.editing = false;
