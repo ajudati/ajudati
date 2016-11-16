@@ -1,28 +1,28 @@
-
-
-
 <div class="app-content">
   <div class="call-info">
     <p>Problema</p>
-    <h4>{{call.title}}</h4>  
+    <h4 *ngIf="call">{{call.title}}</h4>  
   </div>
   
   <p>Possíveis ajudantes</p>
+  <app-chips placeholder="Habilidades (separe por vírgulas)" id="skills" name="skills" class="full-width" ></app-chips>
+
 	<!-- Lista de ajudantes -->
 	<md-card class="app-input-section">
     <md-list class="md-dense" flex>
-      <template ngFor let-profile [ngForOf]="profiles|async| paginate: { itemsPerPage: 2, currentPage: currentPage }" let-i="index">
-      <div *ngIf="myId!=profile.$key">
-	      	<md-list-item (click)="viewProfile(profile.$key)" class="md-3-line">
-	          <div class="md-list-item-text" layout="column">
-	            <div class="helper-header">
-	              <h4>{{(users[profile.$key]|async)?.name}}</h4>
-	            </div>
-	            <p>{{profile.description}}</p>
-	          </div>
-	        </md-list-item>
-	        <md-divider></md-divider>
-        </div>
+      <template *ngIf="(results|async)?.total!=0" ngFor let-profile [ngForOf]="(results|async)?.hits| paginate: { itemsPerPage: 5, currentPage: currentPage }" let-i="index">
+	  	<md-list-item (click)="viewProfile(profile._id)" class="md-3-line">
+	      <div class="md-list-item-text" layout="column">
+	        <div class="helper-header">
+	          <h4>{{(users[profile._id]|async)?.name}}</h4>
+	        </div>
+	        <p>{{profile._source.description}}</p>
+	        <ul class="profile-skills">
+		        <li *ngFor="let skill of profile._source.skills">{{skill}}</li>
+		      </ul>
+	      </div>
+	    </md-list-item>
+	    <md-divider></md-divider>
       </template>
     </md-list>
   </md-card>

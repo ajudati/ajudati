@@ -1,5 +1,6 @@
-$primary: #009688;
+$primary: #673ab7;
 /deep/ md-tab-group {
+  flex:1;
   .md-tab-header{
     justify-content: center;
     background: $primary;
@@ -106,4 +107,8 @@ md-list{
 }
 .call-waiting p, .call-waiting{
   color: darkorange;
+}
+:host{
+  flex:1;
+  display:flex;
 }

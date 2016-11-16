@@ -26,7 +26,7 @@
           pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" 
           #email="ngModel" 
           [(ngModel)]="model.email">
-          <md-hint class="md-warn" [hidden]="email.valid || email.pristine">Email vazio ou diferente do formato usuario@dominio.com</md-hint>
+          <md-hint class="md-warn" *ngIf="!email.valid && !email.pristine">Email vazio ou diferente do formato usuario@dominio.com</md-hint>
         </md-input>
         <md-input
           dividerColor="{{password.valid || password.pristine?'primary':'warn'}}" 
@@ -40,7 +40,7 @@
           maxlength="32"
           #password="ngModel"
           [(ngModel)]="model.password">
-          <md-hint class="md-warn" [hidden]="password.valid || password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
+          <md-hint class="md-warn" *ngIf="!password.valid && !password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
         </md-input>
         <button type="submit" md-raised-button color="primary" [disabled]="!f.valid" >Entrar</button>
         <button md-button (click)="clearFields()">Limpar</button>

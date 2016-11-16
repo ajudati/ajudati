@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
 .spacer{
   flex:1;
   display: flex;
@@ -23,7 +24,9 @@ app-header{
 main{
   order: 2;
   flex-grow: 1;
-  overflow-y: scroll;
+  display:flex;
+  overflow-y:auto;
+  //overflow-y: scroll;
 }
 app-footer{
   order:3;

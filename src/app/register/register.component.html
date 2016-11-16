@@ -10,7 +10,7 @@
         required
         #name="ngModel"
         [(ngModel)]="model.name">
-        <md-hint class="md-warn" [hidden]="name.valid || name.pristine">Nome não deve estar vazio</md-hint>
+        <md-hint *ngIf="!name.valid && !name.pristine" class="md-warn" [hidden]="">Nome não deve estar vazio</md-hint>
       </md-input>
       <md-input 
         dividerColor="{{email.valid || email.pristine?'primary':'warn'}}" 
@@ -24,7 +24,7 @@
         pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" 
         #email="ngModel" 
         [(ngModel)]="model.email">
-        <md-hint class="md-warn" [hidden]="email.valid || email.pristine">Email vazio, já cadastrado ou diferente do formato usuario@dominio.com</md-hint>
+        <md-hint *ngIf="!email.valid && !email.pristine" class="md-warn">Email vazio, já cadastrado ou diferente do formato usuario@dominio.com</md-hint>
       </md-input>
       
       <md-input
@@ -40,7 +40,7 @@
         appValidateEqual="password2" reverse="true"
         #password="ngModel"
         [(ngModel)]="model.password">
-        <md-hint class="md-warn" [hidden]="password.valid || password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
+        <md-hint class="md-warn" *ngIf="!password.valid && !password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
       </md-input>
 
       <md-input
@@ -56,7 +56,7 @@
         appValidateEqual="password"
         #password2="ngModel"
         [(ngModel)]="model.password2">
-        <md-hint class="md-warn" [hidden]="password2.valid || password2.pristine">Senhas devem ser iguais e conter 8 a 32 caracteres</md-hint>
+        <md-hint class="md-warn" *ngIf="!password2.valid && !password2.pristine">Senhas devem ser iguais e conter 8 a 32 caracteres</md-hint>
       </md-input>
       
       <md-card-actions>

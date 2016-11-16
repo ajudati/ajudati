@@ -34,7 +34,7 @@
             Você foi selecionado como ajudante. Gostaria de ajudar?
           </p>
           <p *ngIf="(currentCall|async)?.status >= 2">
-            Atendido por <img class="user-photo-small" src="{{pictures[(currentCall|async)?.helper]|async}}">{{(users[(currentCall|async)?.helper]|async)?.name}}. 
+            Atendido por <img class="user-photo-small" src="{{pictures[(currentCall|async)?.helper]|async}}">{{(users[(currentCall|async)?.helper]|async)?.name}}. <a routerLink='/chat/{{(currentCall|async)?.$key}}'>Chat</a>
           </p>
           <p *ngIf="(currentCall|async)?.status == 2 && !(currentCall|async)?.ownerAccepted">
             Esperando aceitação de {{(users[(currentCall|async)?.owner]|async)?.name}}.<i class="material-icons">schedule</i>

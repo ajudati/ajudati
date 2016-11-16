@@ -1,5 +1,5 @@
 # AjudaTI
-Rede social para solução de problemas em TI. Atualmente na versão 0.1 (Unua).
+Rede social para solução de problemas em TI. Atualmente na versão 0.2 (Dua).
 
 # Instalação
 
@@ -17,25 +17,25 @@ Abra um navegador na página `http://localhost:4200` e voilà.
 
 # Funcionalidades
 
-| Funcionalidade                 | Status |
-|--------------------------------|--------|
-| Cadastro do Usuário            | Feito  |
-| Login                          | Feito  |
-| Informar Problema (chamado)    | Feito  |
-| Procurar ajudante              |        |
-| Perfil de usuário (e ajudante) | Feito  |
-| Editar perfil                  | Feito  |
-| Associar ajudante ao chamado   | Feito  |
-| Aceitar chamado do usuário     | Feito  |
-| Procurar chamados              |        |
-| Listar chamados                |        |
-| Editar Problema                |        |
-| Chat texto                     |        |
-| Chat imagens                   |        |
-| Chat áudio                     |        |
-| Chat câmera                    |        |
-| Avaliação                      |        |
-| Pagamento                      |        |
+| Funcionalidade                 | Status    |
+|--------------------------------|-----------|
+| Cadastro do Usuário            | Feito     |
+| Login                          | Feito     |
+| Informar Problema (chamado)    | Feito     |
+| Procurar ajudante              | Feito     |
+| Perfil de usuário (e ajudante) | Feito     |
+| Editar perfil                  | Feito     |
+| Associar ajudante ao chamado   | Feito     |
+| Aceitar chamado do usuário     | Feito     |
+| Procurar chamados              | Feito     |
+| Listar chamados                | Feito     |
+| Editar Problema                |           |
+| Chat texto                     | Feito     |
+| Chat imagens                   |           |
+| Chat áudio                     |           |
+| Chat câmera                    |           |
+| Avaliação                      | Andamento |
+| Pagamento                      |           |
 
 
 # Versão Demo
