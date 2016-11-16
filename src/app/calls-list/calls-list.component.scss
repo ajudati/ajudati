@@ -19,6 +19,12 @@ $primary: #673ab7;
     }
   }
 }
+@media screen and (min-width:320px){
+  /deep/ md-tab-group .md-tab-header div.md-tab-label{
+    min-width: 160px;
+  }  
+}
+
 
 .calls-controls{
   display:flex;

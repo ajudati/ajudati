@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { MaterialModule } from '@angular/material';
 
+
 import * as firebase from 'firebase';
 import { AuthProviders, AuthMethods, AngularFireModule } from 'angularfire2';
 
@@ -85,7 +86,7 @@ const myFirebaseAuthConfig = {
 
     Ng2PaginationModule,
 
-    MaterialModule,
+    MaterialModule.forRoot(),
 
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)
   ],

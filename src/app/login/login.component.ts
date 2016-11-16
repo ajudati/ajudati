@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdSnackBar } from '@angular/material';
 
 import { AuthService } from '../auth.service';
 
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   model = {email: '', password: ''};
   hasError: boolean;
 
-  constructor(private auth:AuthService, private router: Router) {  }
+  constructor(private auth:AuthService, private router: Router, private snackBar: MdSnackBar) {  }
 
   ngOnInit() {
     this.hasError = false;
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
 
   postSignIn():void{
     this.router.navigate(['/callslist']);
+    this.snackBar.open("Login realizado com sucesso", "Fechar");
   }
 
   onSubmit() {
