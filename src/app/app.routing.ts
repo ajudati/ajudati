@@ -5,12 +5,14 @@ import { LoginComponent }     from './login/login.component';
 import { ProfileComponent }   from './profile/profile.component';
 import { CallFormComponent }   from './call-form/call-form.component';
 import { HelperSearchComponent }   from './helper-search/helper-search.component';
+import { ChatComponent }   from './chat/chat.component';
 import { CallsListComponent } from './calls-list/calls-list.component';
 import { CallComponent }      from './call/call.component';
 import { CallsSearchComponent }      from './calls-search/calls-search.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
+import { ChatGuard } from './chat.guard';
 
 const appRoutes: Routes = [
   {
@@ -44,6 +46,11 @@ const appRoutes: Routes = [
   {
     path: 'helpersearch',
     component: HelperSearchComponent
+  },
+  {
+    path: 'chat/:id',  
+    component: ChatComponent,
+    canActivate: [ChatGuard]
   },
   {
     path: 'callslist',

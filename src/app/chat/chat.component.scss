@@ -1,0 +1,92 @@
+$message-border:rgba(0,0,0,0.15);
+$me-color:#d0ffd0;
+$other-color:white;
+.chat-messages{
+  display: flex;
+  flex-direction:column;
+  overflow-y:auto;
+  flex:1;
+  .chat-messages-container{
+    overflow-y:auto;
+    overflow-x:hidden;
+    .chat-message{
+      display: flex;
+      flex-direction:row;
+      .chat-message-container{
+        display:inline-block;
+        position:relative;
+        padding:2px;
+        border-radius:3px;
+        border:1px solid $message-border;
+        .chat-message-user{
+          font-size:10px;
+          font-weight:bold;
+          color:#777;
+        }
+        .chat-message-text{
+          font-size:13px;
+        }
+        .chat-message-time{
+          font-size:10px;
+          color:#666666;
+          text-align:right;
+        }
+        &:before,&:after{
+          content: ' ';
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-style: solid solid solid solid;
+        }
+        &:before{
+          top: 10px;
+          border-width: 7px;
+        }
+        &:after{
+          top: 11px;
+          border-width: 6px;
+        }
+      }
+    }
+  }
+  .chat-other{
+    .chat-message-container{
+      background:$other-color;
+      margin-left:7px;
+      &:before{
+        border-color: transparent $message-border transparent transparent;
+        left: -14px;
+      }
+      &:after{
+        border-color: transparent $other-color transparent transparent;
+        left: -12px;
+      }
+    }
+    justify-content:flex-start;
+  }
+  .chat-me{
+    .chat-message-container{
+      background:$me-color;
+      margin-right:13px;
+      &:before{
+        border-color: transparent transparent transparent $message-border;
+        right: -14px;
+      }
+      &:after{
+        border-color: transparent transparent transparent $me-color;
+        right: -12px;
+      }
+    }
+    justify-content:flex-end;
+  }
+}
+.app-content{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  justify-content:space-between;
+}
+:host{
+  flex:1;
+  display:flex;
+}

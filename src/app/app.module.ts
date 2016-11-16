@@ -3,15 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { MdButtonModule } from '@angular2-material/button';
-import { MdInputModule } from '@angular2-material/input';
-import { MdCardModule } from '@angular2-material/card';
-import { MdIconModule } from '@angular2-material/icon';
-import { MdToolbarModule } from '@angular2-material/toolbar';
-import { MdListModule } from '@angular2-material/list';
-import { MdCheckboxModule } from '@angular2-material/checkbox';
-import { MdSlideToggleModule } from '@angular2-material/slide-toggle';
-import { MdTabsModule } from '@angular2-material/tabs';
+import { MaterialModule } from '@angular/material';
 
 import * as firebase from 'firebase';
 import { AuthProviders, AuthMethods, AngularFireModule } from 'angularfire2';
@@ -28,6 +20,7 @@ import { CallFormComponent } from './call-form/call-form.component';
 import { CallsListComponent } from './calls-list/calls-list.component';
 import { HelperSearchComponent } from './helper-search/helper-search.component';
 import { ChatComponent } from './chat/chat.component';
+import { ChatService } from './chat.service';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { CallsSearchComponent } from './calls-search/calls-search.component';
 import { ChipsComponent } from './chips/chips.component';
@@ -43,6 +36,7 @@ import { EmailExistingValidatorDirective } from './email-existing-validator.dire
 import { FocusDirective } from './focus.directive';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
+import { ChatGuard } from './chat.guard';
 import { CallComponent } from './call/call.component';
 
 
@@ -63,6 +57,7 @@ const myFirebaseAuthConfig = {
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    ChatComponent,
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
@@ -88,19 +83,11 @@ const myFirebaseAuthConfig = {
 
     Ng2PaginationModule,
 
-    MdButtonModule,
-    MdInputModule,
-    MdCardModule,
-    MdToolbarModule,
-    MdListModule,
-    MdIconModule,
-    MdCheckboxModule,
-    MdSlideToggleModule,
-    MdTabsModule,
+    MaterialModule,
 
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)
   ],
-  providers: [UserService, ProfileService, CallService, AuthService, AuthGuard, RootGuard],
+  providers: [UserService, ProfileService, CallService, AuthService, AuthGuard, RootGuard, ChatService, ChatGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
