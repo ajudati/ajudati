@@ -3,7 +3,8 @@
     ".read": "auth != null",
     ".write": "auth != null",
     "calls":{
-      ".indexOn":["owner","helper"]
+      ".indexOn":["owner","helper"],
+      ".read": "true"
     },
     "users":{
       ".read":"true",
@@ -12,6 +13,15 @@
     "profiles":{
       ".read":"true",
       ".write":"true"
+    },
+    "search":{
+      "response":{
+        ".read":"true"
+      },
+      "request":{
+        ".write":"true",
+        ".read":"true"
+      }
     }
   }
 }

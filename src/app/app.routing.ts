@@ -13,6 +13,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
 import { ChatGuard } from './chat.guard';
+import { CallStoredGuard } from './call-stored.guard';
 
 const appRoutes: Routes = [
   {
@@ -31,8 +32,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard]
+    component: ProfileComponent
   },
   {
     path: 'profile/:uid',
@@ -45,7 +45,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'helpersearch',
-    component: HelperSearchComponent
+    component: HelperSearchComponent,
+    canActivate: [CallStoredGuard]
   },
   {
     path: 'chat/:id',  

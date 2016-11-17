@@ -24,7 +24,7 @@
         <li *ngFor="let skill of (currentProfile | async)?.skills">{{skill}}</li>
       </ul>
     </div>
-    <button md-raised-button color="primary" (click)="showForm()" *ngIf="uid==as.id()">Editar</button>
+    <button md-raised-button color="primary" (click)="showForm()" *ngIf="uid == as.id">Editar</button>
   </div>
 
   <app-profile-form *ngIf="editing" [currentUser]="currentUser" [currentProfile]="currentProfile" (cancel)="hideForm()" (saved)="hideForm()"></app-profile-form>

@@ -11,7 +11,7 @@
     </ul>
     <input [focus]="inputFocused" (blur)="onInputBlur()" id="inputid" type="text" 
            #currentTag="ngModel" [(ngModel)]="model.currentTag" 
-           (keypress)="onKeyPress($event.key, currentTag.value.length)"
+           (keydown)="onKeyDown($event.key, currentTag.value.length,$event.target.selectionStart)"
            (keyup)="onKeyUp(currentTag.value.length)"
            [ngStyle]="{'width' : width + 'px'}" width="12px">
   </div>

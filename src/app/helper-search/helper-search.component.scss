@@ -1,4 +1,4 @@
-$primary: #009688;
+$primary: #673ab7;
 /deep/ md-tab-group {
   .md-tab-header{
     justify-content: center;
@@ -38,13 +38,11 @@ md-list{
       height:auto;
       min-height:51px;
       align-items:normal;
-      &:hover{
-        background:#f1f1f1;
-      }
       .md-list-item-text{
         width: 100%;
         .helper-header{
           display: flex;
+          align-items: center;
         }
       }
     }
@@ -58,16 +56,29 @@ md-list{
 
 .profile-skills{
   list-style:none;
-  margin-top: 6px;
+  margin-top: 0px;
+  margin-bottom:0px;
   padding:0px;
   li{
-    display:inline;
+    display:inline-block;
     background: #dddddd;
-    border-radius: 15px;
-    padding: 7px;
+    border-radius: 13px;
+    padding: 5px;
     margin: 1px;
+    font-size: 13px;
+    color:#555;
   }
 }
 :host{
   flex:1;
+}
+
+img{
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.8);
+  border: 1px solid #FFF;
+  margin-right: 5px;
+  // margin-bottom: 5px;
 }

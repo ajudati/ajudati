@@ -1,20 +1,23 @@
-<div class="app-content">
+<div class="app-content" *ngIf="!viewingProfile">
   <div class="call-info">
     <p>Problema</p>
     <h4 *ngIf="call">{{call.title}}</h4>  
   </div>
   
-  <p>Possíveis ajudantes</p>
-  <app-chips placeholder="Habilidades (separe por vírgulas)" id="skills" name="skills" class="full-width" ></app-chips>
+  <app-chips placeholder="Habilidades (separe por vírgulas)" id="skills" name="skills" class="full-width" [(ngModel)]="skills" (ngModelChange)="onSkillsChanged()"></app-chips>
 
 	<!-- Lista de ajudantes -->
+  <p>Possíveis ajudantes</p>
 	<md-card class="app-input-section">
     <md-list class="md-dense" flex>
       <template *ngIf="(results|async)?.total!=0" ngFor let-profile [ngForOf]="(results|async)?.hits| paginate: { itemsPerPage: 5, currentPage: currentPage }" let-i="index">
-	  	<md-list-item (click)="viewProfile(profile._id)" class="md-3-line">
+	  	<md-list-item class="md-3-line">
 	      <div class="md-list-item-text" layout="column">
 	        <div class="helper-header">
+            <img class="user-photo-small" src="{{pictures[profile._id]|async}}">
 	          <h4>{{(users[profile._id]|async)?.name}}</h4>
+            <span class="spacer"></span>
+            <button md-raised-button color="primary" (click)="choose(profile._id)">Escolher</button>
 	        </div>
 	        <p>{{profile._source.description}}</p>
 	        <ul class="profile-skills">
@@ -26,7 +29,5 @@
       </template>
     </md-list>
   </md-card>
-
   <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
-
 </div>

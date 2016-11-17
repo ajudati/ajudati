@@ -11,11 +11,15 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   model = {email: '', password: ''};
   hasError: boolean;
+  active:boolean;
 
-  constructor(private auth:AuthService, private router: Router) {  }
+  constructor(private auth:AuthService, private router: Router) { 
+    this.active = true;
+  }
 
   ngOnInit() {
     this.hasError = false;
+    this.active = true;
   }
 
   signInWithGithub():void{
@@ -40,5 +44,7 @@ export class LoginComponent implements OnInit {
   }
   clearFields(){
     this.model = {email: '', password: ''};
+    this.active = false;
+    setTimeout(()=>this.active=true,0);
   }
 }

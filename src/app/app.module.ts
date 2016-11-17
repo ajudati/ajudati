@@ -37,6 +37,7 @@ import { FocusDirective } from './focus.directive';
 import { AuthGuard } from './auth.guard';
 import { RootGuard } from './root.guard';
 import { ChatGuard } from './chat.guard';
+import { CallStoredGuard } from './call-stored.guard';
 import { CallComponent } from './call/call.component';
 
 
@@ -83,11 +84,11 @@ const myFirebaseAuthConfig = {
 
     Ng2PaginationModule,
 
-    MaterialModule,
+    MaterialModule.forRoot(),
 
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)
   ],
-  providers: [UserService, ProfileService, CallService, AuthService, AuthGuard, RootGuard, ChatService, ChatGuard],
+  providers: [UserService, ProfileService, CallService, AuthService, AuthGuard, RootGuard, ChatService, ChatGuard, CallStoredGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

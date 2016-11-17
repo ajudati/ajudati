@@ -12,12 +12,16 @@ import { Call } from '../call';
 })
 export class CallFormComponent implements OnInit {
   model = {title: '', description: ''};
+  active:boolean;
   constructor(private router: Router,
               private cs:CallService,
-              private af:AuthService) { }
+              private af:AuthService) { 
+    this.active = true;
+  }
 
   ngOnInit() {
     this.cs.currentCall = null;
+    this.active         = true;
   }
   async onSubmit() {
     let newCall:Call = new Call();
@@ -28,5 +32,10 @@ export class CallFormComponent implements OnInit {
     }
     this.cs.currentCall = newCall;
     this.router.navigate(['/helpersearch']);
+  }
+  clearFields(){
+    this.model = {title: '', description: ''};
+    this.active = false;
+    setTimeout(()=> this.active=true, 0);
   }
 }
