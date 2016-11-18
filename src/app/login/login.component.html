@@ -1,20 +1,22 @@
 <div class="app-content">
   <md-hint class="md-warn" *ngIf="hasError">Não consegui te autenticar. O e-mail e a senha estão certos?</md-hint>
-  <md-card>
+  <!-- <md-card>
     <md-card-title>usando alguma rede social</md-card-title>
-    <md-card-content>
+    <md-card-content> -->
+      <div class="app-title">Por rede social</div>
       <div class="app-social-buttons">
         <button md-raised-button class="btn-github" (click)='signInWithGithub()'>Github</button>
         <button md-raised-button class="btn-facebook" (click)='signInWithFacebook()'>Facebook</button>
         <button md-raised-button class="btn-twitter" (click)='signInWithTwitter()'>Twitter</button>
         <button md-raised-button class="btn-google" (click)='signInWithGoogle()'>Google</button>
       </div>
-    </md-card-content>
+    <!-- </md-card-content>
   </md-card>
-  <md-card>
-    <md-card-title>ou por login e senha</md-card-title>
-    <md-card-content>
-      <form #f="ngForm" novalidate (ngSubmit)="onSubmit()">
+  <md-card> -->
+    <!-- <md-card-title>ou por login e senha</md-card-title>
+    <md-card-content> -->
+      <div class="app-title">Ou por login e senha</div>
+      <form *ngIf="active" #f="ngForm" novalidate (ngSubmit)="onSubmit()">
         <md-input 
           dividerColor="{{email.valid || email.pristine?'primary':'warn'}}" 
           class="full-width" 
@@ -43,9 +45,9 @@
           <md-hint class="md-warn" *ngIf="!password.valid && !password.pristine">Senha deve conter 8 a 32 caracteres</md-hint>
         </md-input>
         <button type="submit" md-raised-button color="primary" [disabled]="!f.valid" >Entrar</button>
-        <button md-button (click)="clearFields()">Limpar</button>
+        <button md-button type="button" (click)="clearFields()">Limpar</button>
       </form>
-    </md-card-content>
-  </md-card>
+    <!-- </md-card-content>
+  </md-card> -->
 </div>
 

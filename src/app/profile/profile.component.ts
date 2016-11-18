@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 
@@ -15,7 +15,7 @@ import { AuthService } from '../auth.service';
 })
 export class ProfileComponent implements OnInit {
   editing:boolean;
-  uid:string;
+  @Input() uid:string;
   currentProfile:FirebaseObjectObservable<any>;
   currentUser:FirebaseObjectObservable<any>;
   pictureURL:firebase.Promise<any>;
@@ -25,23 +25,29 @@ export class ProfileComponent implements OnInit {
               private ps:ProfileService,
               private us:UserService,
               private cs:CallService,
-              private as:AuthService) { }
+              private as:AuthService) { 
+    this.uid = null;
+  }
 
   ngOnInit() {
+    console.log("init");
     this.editing = false;
     this.route.params.forEach((params: Params) =>{
       this.uid = params['uid'];
-      this.currentProfile = this.ps.getProfile(this.uid);
-      this.currentUser    = this.us.getUser(this.uid);
-      this.pictureURL = this.ps.getPicture(this.uid);
     });
+    if(this.uid) this.getProfile();
   }
   showForm(){
-    this.editing = true;
+    this.editing        = true;
   }
   hideForm(){
-    this.editing = false;
-    this.pictureURL = this.ps.getPicture(this.uid);
+    this.editing        = false;
+    this.pictureURL     = this.ps.getPicture(this.uid);
+  }
+  getProfile(){
+    this.currentProfile = this.ps.getProfile(this.uid);
+    this.currentUser    = this.us.getUser(this.uid);
+    this.pictureURL     = this.ps.getPicture(this.uid);
   }
 
 }

@@ -48,7 +48,7 @@ export class ProfileService {
   }
   getPicture(uid:string):firebase.Promise<any>{
     let storageRef = firebase.storage().ref();
-    return storageRef.child(`images/${uid}`).getDownloadURL().catch(()=>{});
+    return storageRef.child(`images/${uid}`).getDownloadURL().catch(()=>"assets/nophoto.png");
   }
   getProfiles():FirebaseListObservable<any>{
     return this.af.database.list('profiles');
@@ -67,6 +67,7 @@ export class ProfileService {
     }
     else
       queryObj = {"match_all": {}};
+    console.log(this.as.id, queryObj);
 
     let key:any = this.af.database.list('search/request')
       .push({index:'firebase',type:'profile',body:{

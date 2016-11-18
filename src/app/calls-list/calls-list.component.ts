@@ -38,8 +38,15 @@ export class CallsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.cs.currentCall){
+      this.cs.currentCall.owner = this.as.id;
+      this.cs.createCall(this.cs.currentCall).then(()=>{
+        this.cs.currentCall = null;
+      });
+    }
     this.searching = false;
     this.users = {};
+    this.cs.currentCall = null;
     this.currentCalls   = <FirebaseListObservable<any>>this.cs.getCalls(this.as.id).do(this.sortCalls);
     this.currentServices= <FirebaseListObservable<any>>this.cs.getServices(this.as.id).do(this.sortCalls);
     this.currentCalls.subscribe(calls => {

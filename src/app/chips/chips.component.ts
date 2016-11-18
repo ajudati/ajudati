@@ -29,17 +29,64 @@ export class ChipsComponent implements OnInit, ControlValueAccessor {
     this.tags = [];
     this.inputFocused = false;
   }
-  onKeyPress(key:string, length:number){
+
+  closeTag(tag){
+    this.tags = this.tags.filter(item => item !== tag);
+    this.onChangeCallback(this.tags);
+  }
+  ngOnInit(){
+    this.inputFocused = false;
+  }
+  //get accessor
+  get value(): any {
+      return this.tags;
+  };
+
+  //set accessor including call the onchange callback
+  set value(v: any) {
+    if (v !== this.tags) {
+      this.tags = v;
+      this.onChangeCallback(v);
+    }
+  }
+
+  /*-----------------------------------------------------------------
+  From ControlValueAccessor interface
+  -----------------------------------------------------------------*/
+  registerOnTouched(fn: any) {
+      this.onTouchedCallback = fn;
+  }
+
+  writeValue(value: any) {
+    if (value !== this.tags) {
+      this.tags = value;
+    }
+  }
+
+  registerOnChange(fn: any) {
+      this.onChangeCallback = fn;
+  }
+
+
+  /*-----------------------------------------------------------------
+  Handler for input events
+  -----------------------------------------------------------------*/
+  onInputBlur(){
+    this.inputFocused = false;
+  }
+  onKeyDown(key:string, length:number, position:number){
     if(key===',' || key===';' || key === 'Enter'){
-      this.tags.push(this.model.currentTag);
-      this.model.currentTag = "";
+      this.model.currentTag.slice(0,position);
+      this.tags.push(this.model.currentTag.slice(0,position));
+      this.model.currentTag = this.model.currentTag.slice(position);
       this.onTouchedCallback();
       this.onChangeCallback(this.tags);
       return false;
     }else if(key === 'Backspace'){
-      if(this.model.currentTag === ''){
+      if(this.model.currentTag === '' || position == 0){
         this.tags.pop();
         this.onTouchedCallback();
+        this.onChangeCallback(this.tags);
         return false;
       }
       // TODO: remove tag if currentTag is not empty and cursor is at beginning
@@ -52,42 +99,5 @@ export class ChipsComponent implements OnInit, ControlValueAccessor {
 
   onClick(){
     this.inputFocused = true;
-  }  
-  closeTag(tag){
-    this.tags = this.tags.filter(item => item !== tag);
-    this.onChangeCallback(this.tags);
-  }
-  ngOnInit(){
-    this.inputFocused = false;
-  }
-  writeValue(value: any) {
-    if (value !== this.tags) {
-      this.tags = value;
-    }
-  }
-
-  registerOnChange(fn: any) {
-      this.onChangeCallback = fn;
-  }
-  onInputBlur(){
-    this.inputFocused = false;
-  }
-
-  //From ControlValueAccessor interface
-  registerOnTouched(fn: any) {
-      this.onTouchedCallback = fn;
-  }
-
-  //get accessor
-  get value(): any {
-      return this.tags;
-  };
-
-  //set accessor including call the onchange callback
-  set value(v: any) {
-    if (v !== this.tags) {
-      this.tags = v;
-      this.onChangeCallback(v);
-    }
   }
 }
